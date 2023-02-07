@@ -85,7 +85,19 @@ Create basic features of Meetup. Groups, Events, Members, and Calendar.
 
 ### UI
 
-- TODO: upload each section of each feature once this is on GitHub and complete
+- Homepage: 
+![Screen Shot 2023-02-07 at 1 51 12 PM](https://user-images.githubusercontent.com/11698908/217375968-615398d9-c62b-49d3-b8b6-b1c9483cf842.png)
+
+- Group page: 
+![Screen Shot 2023-02-07 at 1 52 53 PM](https://user-images.githubusercontent.com/11698908/217376056-03f790e6-19cb-4833-84f4-a10677bed2cf.png)
+
+- Event page: 
+![Screen Shot 2023-02-07 at 1 53 06 PM](https://user-images.githubusercontent.com/11698908/217376122-0bd7b48e-0cc9-4a05-9172-2e1e719c4f6e.png)
+
+- User profile: 
+![Screen Shot 2023-02-07 at 1 53 18 PM](https://user-images.githubusercontent.com/11698908/217376191-1a4ddb8e-a596-4608-aaaf-090d50ad8626.png)
+![Screen Shot 2023-02-07 at 1 53 26 PM](https://user-images.githubusercontent.com/11698908/217376227-3fe64884-fec0-49c7-a858-4c74ce4adc72.png)
+
 
 ### Frontend
 
