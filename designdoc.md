@@ -117,3 +117,4 @@ Create basic features of Meetup. Groups, Events, Members, and Calendar.
 - todo: Redis:
   - Can that help it laod faster?
   - How much work will it be?
+- todo: What does meetup actually use?
