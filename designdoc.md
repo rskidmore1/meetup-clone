@@ -112,9 +112,13 @@ Create basic features of Meetup. Groups, Events, Members, and Calendar.
 ### Database
 
 - todo: Should I just use MongoDB because I'm already learning it?
-- todo: MySQL: does this use case fit this?
+- todo: MySQL: does this use case fit this? 
+  - Answer: It can be used for this.
 - todo: MongoDB: does this use case fit this?
+  - Answer: Aggregating all the events on the home page is good use case.
+- todo: What does meetup actually use?
+  - Answer: MySQL. I think its just because the company is old.
+
 - todo: Redis:
   - Can that help it laod faster?
   - How much work will it be?
-- todo: What does meetup actually use?
