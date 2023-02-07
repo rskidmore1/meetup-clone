@@ -64,24 +64,24 @@ Create basic features of Meetup. Groups, Events, Members, and Calendar.
 - Attend bottom bar
 
 - User profile
-- GROUP profile:
-- Title
-- Message
-- Location
-- Joined group
-- Shared groups
-- Intro
-- Age
-- Activity interests
-- FULL profile:
-- Name
-- Title
-- Location
-- Member since
-- Age
-- Activty interest
-- Introduction
-- Member of groups
+  - GROUP profile:
+    - Title
+    - Message
+    - Location
+    - Joined group
+    - Shared groups
+    - Intro
+    - Age
+    - Activity interests
+  - FULL profile:
+    - Name
+    - Title
+    - Location
+    - Member since
+    - Age
+    - Activty interest
+    - Introduction
+    - Member of groups
 
 ### UI
 
