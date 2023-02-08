@@ -38,31 +38,28 @@ Create basic features of Meetup. Groups, Events, Members, and Calendar.
 **We are listing basic features for now and will update as each of the sub-features needs to be better fleshed out**
 
 - Home page
-- Groups you organize
-- Next event your hostign
-- Calendar wiht dot for event
-- Scroll of evnets
-  - Your group events
-  - Sujested events
-- Groups you are a part of
-- Your interests
-
+  - Groups you organize
+  - Next event your hostign
+  - Calendar wiht dot for event
+  - Scroll of evnets
+    - Your group events
+    - Sujested events
+  - Groups you are a part of
+  - Your interests
 - Groups
-- Tabs: About, Events, Memberrs, Photos, Discussions, More
-- “What we’re about”
-- Social media share buttons
-- Members list
-- Upcoming events scroll
-
+  - Tabs: About, Events, Memberrs, Photos, Discussions, More
+  - “What we’re about”
+  - Social media share buttons
+  - Members list
+  - Upcoming events scroll
 - Events
-- Title
-- Picture
-- Description
-- Attendees
-- Photos
-- Organizer Tools drop down
-- Attend bottom bar
-
+  - Title
+  - Picture
+  - Description
+  - Attendees
+  - Photos
+  - Organizer Tools drop down
+  - Attend bottom bar
 - User profile
   - GROUP profile:
     - Title
