@@ -102,9 +102,11 @@ Create basic features of Meetup. Groups, Events, Members, and Calendar.
 ### Frontend
 
 - What: React
-- Why: I want to learn react again. I'm looking for a job. Most of these feature can be helped wiht react plusins
+- Why: I want to learn react again. I'm looking for a job. Most of these feature can be helped wiht react plugins.
 - What: Tailwind 
-- Why: I want to USE my skills to create an exact copy and Tailwind offers gradular controls
+- Why: I want to USE my skills to create an exact copy and Tailwind offers gradular controls.
+- What: Redux
+- Why: I need to learn redux and this large application will require state management.
 
 ### Backend
 
