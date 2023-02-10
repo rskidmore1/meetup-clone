@@ -79,6 +79,10 @@ Create basic features of Meetup. Groups, Events, Members, and Calendar.
     - Activty interest
     - Introduction
     - Member of groups
+- Auth
+  - Creating login 
+  - Logging in 
+  - Recovering password
 
 ### UI
 
