@@ -4,7 +4,7 @@ function EventProfile(props) {
   let hostPhoto = props.hostPhoto;
   let photo = props.photo;
   let location = props.location;
-  let details = props.details;
+  let detailsParagraph = props.detailsParagraph;
   let startTime = props.startTime;
   let endTime = props.endTime;
   let group = props.group;
@@ -19,21 +19,24 @@ function EventProfile(props) {
               {title}
             </p>
           </div>
-          <div className="flex flex-row gap-2 px-2">
+          <div className="flex flex-row gap-4 px-2">
             {/* <img src='https://i.insider.com/622bc19c843ef30018e6bf50?width=1200&format=jpeg' /> */}
             <img src={require('./host.png')} width="50" height="50" />
-            <div>
+            <div >
               <p>Hosted by</p>
-              <p>{host}</p>
+              <p className='font-bold float-left'>{host}</p>
             </div>
 
           </div>
         </div>
       </div>
-      <div className="flex flex-row justify-center">
+      <div className="flex flex-row justify-between">
         <div>
-          <div>Picture</div>
-          <div>details</div>
+          <div>
+            <img src={require('./event-image.png')} />
+          </div>
+          <h2 className='float-left font-bold p-5 '>Details</h2>
+          <p className='float-left w-full'>{detailsParagraph}</p>
         </div>
         <div>
           <div>
