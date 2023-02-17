@@ -17,6 +17,7 @@ function App() {
       <EventProfile
         title={'Some Event'}
         host={'Ryan'}
+        hostPhoto={'/src/img/host.png'} // TODO: make this work
         photo={'./somelink'}
         location={'someaddress'}
         details={'some parragraphe'}
