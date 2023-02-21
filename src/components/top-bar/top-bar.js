@@ -1,7 +1,7 @@
 export default function TopBar(props) {
 
   return (
-    <div className=" w-full border-b-2 border-b-black flex flex-row justify-between bg-white py-3">
+    <div className="w-full border-b-2 border-b-black flex flex-row justify-between bg-white p-3 ">
       <div className="flex flex-row gap-4 ml-5">
         <img src={require("./meetup-logo.png")} alt="" />
         <form className="flex flex-row border-[1px] border-black rounded-lg h-2/3 self-center">
@@ -42,7 +42,7 @@ export default function TopBar(props) {
         </div>
         <div className="flex flex-row">
           <img src={require("./user.png")} alt="" height='20px' width='60px' />
-          <div>
+          <div className="self-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
             </svg>
