@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import EventProfile from './event/profile';
+import TopBar from './components/top-bar/top-bar'
 
 async function simpleApiCall() {
   // const response = await fetch('http://54.202.84.223:8000/api/posts');
@@ -13,8 +14,10 @@ async function simpleApiCall() {
 
 function App() {
   return (
+
     <div className="App">
-      <EventProfile
+      <TopBar />
+      {/* <EventProfile
         title={'Some Event'}
         host={'Ryan'}
         hostPhoto={'/src/img/host.png'} // TODO: make this work
@@ -24,7 +27,7 @@ function App() {
         startTime={'sometime'}
         endTime={'sometime'}
         group={'somegroupID'}
-      />
+      /> */}
     </div>
   );
 }
