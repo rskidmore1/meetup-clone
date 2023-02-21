@@ -1,10 +1,10 @@
 export default function TopBar(props) {
 
   return (
-    <div className="w-full border-b-2 border-b-black flex flex-row justify-between bg-white p-3 ">
+    <div className="flex flex-row justify-between w-full p-3 border-b-2 border-b-black bg-white">
       <div className="flex flex-row gap-4 ml-5">
         <img src={require("./meetup-logo.png")} alt="" />
-        <form className="flex flex-row border-[1px] border-black rounded-lg h-2/3 self-center">
+        <form className="flex flex-row border-[1px] self-center h-2/3 border-black rounded-lg">
           <input type="text" className="border-r-[1px] border-r-black" placeholder="Search for keyword" />
           <input type="text" placeholder="Location" />
           <button className="bg-red-500">
@@ -12,13 +12,11 @@ export default function TopBar(props) {
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
             </svg>
           </button>
-
         </form>
-
       </div>
       <div className="flex flex-row gap-x-4">
-        <div className="border-r-[1px] border-r-black pr-3 mr-2">
-          <p className="text-cyan-600 font-bold float-left">Start a new <br />group</p>
+        <div className="pr-3 mr-2 border-r-[1px] border-r-black">
+          <p className="float-left text-cyan-600 font-bold">Start a new <br />group</p>
         </div>
         <div className="flex flex-col">
           <div className="bg-blue-500 w-2/3 rounded-xl self-center">PRO</div>
@@ -46,7 +44,6 @@ export default function TopBar(props) {
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
             </svg>
-
           </div>
         </div>
       </div>
