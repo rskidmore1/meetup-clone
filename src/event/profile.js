@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useSuspense } from '@rest-hooks/react';
-
 
 async function retrieveEvent() {
   const response = await fetch('http://34.210.145.64:8000/events/retrieve-event');
@@ -32,7 +30,6 @@ function EventProfile(props) {
     console.log(apiResponse);
   }, [apiResponse]);
 
-
   return (
     <div>
       <div className="h-36 mb-10 w-full flex justify-items-start bg-white">
@@ -53,8 +50,6 @@ function EventProfile(props) {
         </div>
       </div>
       <div>
-        <p>hello</p>
-        <button type="button" onClick={console.log('hello')}>Press for api </button>
         <div className="flex flex-row justify-between">
           <div className='w-2/3'>
             <div>
@@ -114,9 +109,27 @@ function EventProfile(props) {
           </div>
         </div>
       </div>
-
-
-
+      {/* TODO: Make this into <Comments /> */}
+      <div>
+        <h2 className='font-bold'>Comments</h2>
+        <div className='flex flex-row'>
+          <img src={require("./host.png")} alt="" className='self-start rounded-full' />
+          <div className="w-full h-fit bg-white">
+            <div className="flex flex-row justify-between">
+              <div>Name</div>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+              </svg>
+            </div>
+            <div>
+              Comment text
+            </div>
+          </div>
+        </div>
+        <div>
+          {/* Input box here */}
+        </div>
+      </div>
     </div>
   );
 }
