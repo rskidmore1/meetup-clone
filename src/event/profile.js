@@ -61,17 +61,8 @@ function EventProfile(props) {
             <p>{detailsParagraph}</p>
 
             {/* TODO: Make this into <Comments /> */}
-            <div>
-              <h2 className='font-bold'>Comments</h2>
-              {/* Make this into a list */}
-              <ul>
-
-                {doubled.map((number) => (
-                  <li>
-                    {number}
-                  </li>
-                ))}
-              </ul>
+            <div className='flex flex-col'>
+              <h2 className='font-bold self-start'>Comments</h2>
               {apiResponse?.comments?.map((comment) => (
                 <div className='flex flex-row'>
                   <img src={require("./host.png")} alt="" className='self-start rounded-full' />
@@ -88,8 +79,6 @@ function EventProfile(props) {
                   </div>
                 </div>
               ))}
-
-
               <div>
                 {/* Input box here */}
               </div>
