@@ -27,8 +27,10 @@ function EventProfile(props) {
   }, []);
 
   useEffect(() => {
-    console.log(apiResponse);
+    console.log(apiResponse?.comments);
   }, [apiResponse]);
+
+  const doubled = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   return (
     <div>
@@ -51,12 +53,49 @@ function EventProfile(props) {
       </div>
       <div>
         <div className="flex flex-row justify-between">
-          <div className='w-2/3'>
+          <div className='w-2/3 flex flex-col gap-5'>
             <div>
               <img src={require('./event-image.png')} />
             </div>
-            <h2 className='float-left font-bold p-5 '>Details</h2>
-            <p className='float-left w-full'>{detailsParagraph}</p>
+            <h2 className='font-bold p-5 self-start'>Details</h2>
+            <p>{detailsParagraph}</p>
+
+            {/* TODO: Make this into <Comments /> */}
+            <div>
+              <h2 className='font-bold'>Comments</h2>
+              {/* Make this into a list */}
+              <ul>
+
+                {doubled.map((number) => (
+                  <li>
+                    {number}
+                  </li>
+                ))}
+              </ul>
+              {apiResponse?.comments?.map((comment) => (
+                <div className='flex flex-row'>
+                  <img src={require("./host.png")} alt="" className='self-start rounded-full' />
+                  <div className="w-full h-fit bg-white">
+                    <div className="flex flex-row justify-between">
+                      <div>{comment?.user?.name}</div>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      {comment?.text}
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+
+              <div>
+                {/* Input box here */}
+              </div>
+            </div>
+
+
           </div>
           <div className='flex flex-col content-center gap-5 w-1/3'>
             <div className='w-44 h-9 border-2 border-black bg-slate-50 rounded-md flex flex-row justify-center'>
@@ -107,27 +146,6 @@ function EventProfile(props) {
               Event Chat
             </div>
           </div>
-        </div>
-      </div>
-      {/* TODO: Make this into <Comments /> */}
-      <div>
-        <h2 className='font-bold'>Comments</h2>
-        <div className='flex flex-row'>
-          <img src={require("./host.png")} alt="" className='self-start rounded-full' />
-          <div className="w-full h-fit bg-white">
-            <div className="flex flex-row justify-between">
-              <div>Name</div>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-              </svg>
-            </div>
-            <div>
-              Comment text
-            </div>
-          </div>
-        </div>
-        <div>
-          {/* Input box here */}
         </div>
       </div>
     </div>
