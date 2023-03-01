@@ -1,3 +1,13 @@
+import React, { useState, useEffect } from 'react';
+import { useSuspense } from '@rest-hooks/react';
+
+
+async function retrieveEvent() {
+  const response = await fetch('http://34.210.145.64:8000/events/retrieve-event');
+
+  return response; // Note: Can I make this response.json()?
+}
+
 function EventProfile(props) {
   let title = props.title;
   let host = props.host;
@@ -8,6 +18,19 @@ function EventProfile(props) {
   let startTime = props.startTime;
   let endTime = props.endTime;
   let group = props.group;
+
+  const [apiResponse, setApiResponse] = useState();
+
+  useEffect(() => {
+    retrieveEvent().then(
+      result => result.json()).then(
+        data => setApiResponse(data)
+      );
+  }, []);
+
+  useEffect(() => {
+    console.log(apiResponse);
+  }, [apiResponse]);
 
 
   return (
@@ -30,6 +53,8 @@ function EventProfile(props) {
         </div>
       </div>
       <div>
+        <p>hello</p>
+        <button type="button" onClick={console.log('hello')}>Press for api </button>
         <div className="flex flex-row justify-between">
           <div className='w-2/3'>
             <div>
