@@ -7,6 +7,9 @@ async function retrieveEvent() {
 }
 
 function EventProfile(props) {
+
+
+
   let title = props.title;
   let host = props.host;
   let hostPhoto = props.hostPhoto;
@@ -52,7 +55,7 @@ function EventProfile(props) {
         </div>
       </div>
       <div>
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row justify-between mx-10">
           <div className='w-2/3 flex flex-col gap-5'>
             <div>
               <img src={require('./event-image.png')} />
@@ -79,13 +82,21 @@ function EventProfile(props) {
                   </div>
                 </div>
               ))}
-              <div>
-                {/* Input box here */}
+              <div className="border-[1px] border-gray-700"></div>
+              <div className="self-start flex flex-row">
+                <img src={require("./host.png")} alt="" className='rounded-full w-10 h-10' />
+                <form>
+                  <input type="text" placeholder="Add a comment..." className="w-[400px] h-20" />
+                  <button type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                    </svg>
+                  </button>
+                </form>
               </div>
             </div>
-
-
           </div>
+
           <div className='flex flex-col content-center gap-5 w-1/3'>
             <div className='w-44 h-9 border-2 border-black bg-slate-50 rounded-md flex flex-row justify-center'>
               <span>
