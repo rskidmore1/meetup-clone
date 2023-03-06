@@ -54,7 +54,6 @@ function EventProfile(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(e.target.text.value);
     const newComment = {
       "id": "1234",
       "user": {
@@ -66,7 +65,8 @@ function EventProfile(props) {
       "top_comment": true,
       "replys": []
     };
-    setComments(comments => [...comments, newComment])
+    setComments(comments => [...comments, newComment]);
+    e.target.reset();
 
   }
 
