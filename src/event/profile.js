@@ -54,11 +54,21 @@ function EventProfile(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
+    // console.log(e.target.text.value);
+    const newComment = {
+      "id": "1234",
+      "user": {
+        "id": "1234",
+        "name": "Ryan S.",
+        "photo": "./somefile"
+      },
+      "text": e.target.text.value,
+      "top_comment": true,
+      "replys": []
+    };
+    setComments(comments => [...comments, newComment])
+
   }
-
-
-  const doubled = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   return (
     <div>
