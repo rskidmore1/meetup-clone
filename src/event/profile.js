@@ -5,10 +5,14 @@ async function retrieveEvent() {
 
   return response; // Note: Can I make this response.json()?
 }
+function addingComment(event) {
+
+  console.log(event);
+
+  // return commentsState.push(newComment);
+}
 
 function EventProfile(props) {
-
-
 
   let title = props.title;
   let host = props.host;
@@ -21,17 +25,38 @@ function EventProfile(props) {
   let group = props.group;
 
   const [apiResponse, setApiResponse] = useState();
+  const [comments, setComments] = useState();
+  const sampleComment = {
+    "id": "1234",
+    "user": {
+      "id": "1234",
+      "name": "Ryan S.",
+      "photo": "./somefile"
+    },
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae erat eleifend, egestas lorem eu, vehicula nisl.",
+    "top_comment": true,
+    "replys": []
+  };
 
   useEffect(() => {
     retrieveEvent().then(
       result => result.json()).then(
-        data => setApiResponse(data)
+        data => {
+          setApiResponse(data)
+          setComments(data.comments)
+        }
       );
   }, []);
 
   useEffect(() => {
-    console.log(apiResponse?.comments);
-  }, [apiResponse]);
+    // console.log(comments);
+  }, [comments]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+  }
+
 
   const doubled = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -60,13 +85,14 @@ function EventProfile(props) {
             <div>
               <img src={require('./event-image.png')} />
             </div>
+            <button onClick={() => setComments(comments => [...comments, sampleComment])}>Losen up my buttons babe</button>
             <h2 className='font-bold p-5 self-start'>Details</h2>
             <p>{detailsParagraph}</p>
 
             {/* TODO: Make this into <Comments /> */}
             <div className='flex flex-col'>
               <h2 className='font-bold self-start'>Comments</h2>
-              {apiResponse?.comments?.map((comment) => (
+              {comments?.map((comment) => (
                 <div className='flex flex-row'>
                   <img src={require("./host.png")} alt="" className='self-start rounded-full' />
                   <div className="w-full h-fit bg-white">
@@ -85,8 +111,8 @@ function EventProfile(props) {
               <div className="border-[1px] border-gray-700"></div>
               <div className="self-start flex flex-row">
                 <img src={require("./host.png")} alt="" className='rounded-full w-10 h-10' />
-                <form>
-                  <input type="text" placeholder="Add a comment..." className="w-[400px] h-20" />
+                <form onSubmit={handleSubmit}>
+                  <input type="text" name="text" placeholder="Add a comment..." className="w-[400px] h-20" />
                   <button type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
