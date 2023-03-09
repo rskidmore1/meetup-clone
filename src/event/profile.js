@@ -1,15 +1,34 @@
 import React, { useState, useEffect } from 'react';
 
 async function retrieveEvent() {
-  const response = await fetch('http://34.210.145.64:8000/events/retrieve-event');
-
+  const response = await fetch('http://34.210.145.64:8000/events/retrieve-event/64091cf1ee0ae9fed40f14ba');
   return response; // Note: Can I make this response.json()?
 }
+
 function addingComment(event) {
 
   console.log(event);
 
   // return commentsState.push(newComment);
+}
+
+async function saveComment(comment) {
+  const url = 'http://34.210.145.64:8000/comment/save-comment';
+  const data = comment;
+  console.log(data);
+
+  const response = await fetch(
+    url, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(comment),
+    Cache: 'default',
+  });
+
+  return response;
 }
 
 function EventProfile(props) {
@@ -25,6 +44,7 @@ function EventProfile(props) {
   let group = props.group;
 
   const [apiResponse, setApiResponse] = useState();
+  const [eventData, setEventData] = useState();
   const [comments, setComments] = useState();
   const sampleComment = {
     "id": "1234",
@@ -35,22 +55,19 @@ function EventProfile(props) {
     },
     "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae erat eleifend, egestas lorem eu, vehicula nisl.",
     "top_comment": true,
-    "replys": []
+    "replys": [],
+    "parent_id": "64091cf1ee0ae9fed40f14ba",
   };
 
   useEffect(() => {
     retrieveEvent().then(
       result => result.json()).then(
         data => {
-          setApiResponse(data)
-          setComments(data.comments)
+          setEventData(data.event);
+          setComments(data.comments);
         }
       );
   }, []);
-
-  useEffect(() => {
-    // console.log(comments);
-  }, [comments]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,12 +79,15 @@ function EventProfile(props) {
         "photo": "./somefile"
       },
       "text": e.target.text.value,
-      "top_comment": true,
-      "replys": []
+      "top_level_comment": true,
+      "replies": [],
+      "parent_id": "64091cf1ee0ae9fed40f14ba",
     };
-    setComments(comments => [...comments, newComment]);
-    e.target.reset();
 
+    saveComment(newComment);
+    setComments(comments => [...comments, newComment]);
+    // Call method here
+    e.target.reset();
   }
 
   return (
@@ -78,7 +98,7 @@ function EventProfile(props) {
             <p className="text-header font-bold font-sans">
               {title}
             </p>
-          </div>
+          </div>``
           <div className="flex flex-row gap-4 px-2">
             <img src={require('./host.png')} width="50" height="50" />
             <div >
@@ -104,7 +124,7 @@ function EventProfile(props) {
               <h2 className='font-bold self-start'>Comments</h2>
               {comments?.map((comment) => (
                 <div className='flex flex-row'>
-                  <img src={require("./host.png")} alt="" className='self-start rounded-full' />
+                  <img src={require("./host.png")} alt="" className="self-start rounded-full w-14 h-14" />
                   <div className="w-full h-fit bg-white">
                     <div className="flex flex-row justify-between">
                       <div>{comment?.user?.name}</div>
@@ -112,7 +132,7 @@ function EventProfile(props) {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
                       </svg>
                     </div>
-                    <div>
+                    <div className="flex justify-self-start">
                       {comment?.text}
                     </div>
                   </div>
