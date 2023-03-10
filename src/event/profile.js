@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Comment from '../components/comment/Comment';
 
 async function retrieveEvent() {
   const response = await fetch('http://34.210.145.64:8000/events/retrieve-event/64091cf1ee0ae9fed40f14ba');
@@ -58,6 +59,8 @@ function EventProfile(props) {
     "replys": [],
     "parent_id": "64091cf1ee0ae9fed40f14ba",
   };
+
+  const parentId = '64091cf1ee0ae9fed40f14ba';
 
   useEffect(() => {
     retrieveEvent().then(
@@ -120,6 +123,7 @@ function EventProfile(props) {
             <p>{detailsParagraph}</p>
 
             {/* TODO: Make this into <Comments /> */}
+            <Comment parentId={parentId} />
             <div className='flex flex-col gap-2'>
               <h2 className='font-bold self-start'>Comments</h2>
               {comments?.map((comment) => (
