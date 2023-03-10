@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Comment from '../components/comment/Comment';
 
-async function retrieveEvent() {
-  const response = await fetch('http://34.210.145.64:8000/events/retrieve-event/64091cf1ee0ae9fed40f14ba');
+async function retrieveEvent(parentId) {
+  const response = await fetch('http://34.210.145.64:8000/events/retrieve-event/' + parentId);
   return response; // Note: Can I make this response.json()?
 }
 
@@ -57,7 +57,7 @@ function EventProfile(props) {
   const parentId = '64091cf1ee0ae9fed40f14ba';
 
   useEffect(() => {
-    retrieveEvent().then(
+    retrieveEvent(parentId).then(
       result => result.json()).then(
         data => {
           setEventData(data.event);
