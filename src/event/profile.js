@@ -6,12 +6,6 @@ async function retrieveEvent() {
   return response; // Note: Can I make this response.json()?
 }
 
-function addingComment(event) {
-
-  console.log(event);
-
-  // return commentsState.push(newComment);
-}
 
 async function saveComment(comment) {
   const url = 'http://34.210.145.64:8000/comment/save-comment';
