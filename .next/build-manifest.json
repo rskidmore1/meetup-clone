@@ -30,10 +30,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/bitches/mad": [
+    "/event": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/bitches/mad.js"
+      "static/chunks/pages/event.js"
     ]
   },
   "ampFirstPages": []

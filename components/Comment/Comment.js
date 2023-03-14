@@ -65,7 +65,7 @@ function Comment(props) {
       <h2 className='font-bold self-start'>Comments</h2>
       {comments?.map((comment) => (
         <div className='flex flex-row gap-1'>
-          <img src={require("./host.png")} alt="" className="self-start rounded-full w-14 h-14" />
+          {/* <img src={require("./host.png")} alt="" className="self-start rounded-full w-14 h-14" /> */}
           <div className="w-full h-fit bg-white px-3">
             <div className="flex flex-row justify-between">
               <div>{comment?.user?.name}</div>
@@ -81,7 +81,7 @@ function Comment(props) {
       ))}
       <div className="border-[1px] border-gray-700"></div>
       <div className="self-start flex flex-row gap-1">
-        <img src={require("./host.png")} alt="" className="rounded-full w-14 h-14" />
+        {/* <img src={require("./host.png")} alt="" className="rounded-full w-14 h-14" /> */}
         <form onSubmit={handleSubmit}>
           <input type="text" name="text" placeholder="Add a comment..." className="w-[400px] h-20" />
           <button type="submit">
