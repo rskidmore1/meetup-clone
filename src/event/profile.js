@@ -1,4 +1,13 @@
+import React, { useState, useEffect } from 'react';
+import Comment from '../components/comment/Comment';
+
+async function retrieveEvent(parentId) {
+  const response = await fetch('http://34.210.145.64:8000/events/retrieve-event/' + parentId);
+  return response; // Note: Can I make this response.json()?
+}
+
 function EventProfile(props) {
+
   let title = props.title;
   let host = props.host;
   let hostPhoto = props.hostPhoto;
@@ -9,6 +18,18 @@ function EventProfile(props) {
   let endTime = props.endTime;
   let group = props.group;
 
+  const [eventData, setEventData] = useState();
+
+  const parentId = '64091cf1ee0ae9fed40f14ba';
+
+  useEffect(() => {
+    retrieveEvent(parentId).then(
+      result => result.json()).then(
+        data => {
+          setEventData(data.event);
+        }
+      );
+  }, []);
 
   return (
     <div>
@@ -30,14 +51,16 @@ function EventProfile(props) {
         </div>
       </div>
       <div>
-        <div className="flex flex-row justify-between">
-          <div className='w-2/3'>
+        <div className="flex flex-row justify-between mx-10">
+          <div className='w-2/3 flex flex-col gap-5'>
             <div>
               <img src={require('./event-image.png')} />
             </div>
-            <h2 className='float-left font-bold p-5 '>Details</h2>
-            <p className='float-left w-full'>{detailsParagraph}</p>
+            <h2 className='font-bold p-5 self-start'>Details</h2>
+            <p>{detailsParagraph}</p>
+            <Comment parentId={parentId} />
           </div>
+
           <div className='flex flex-col content-center gap-5 w-1/3'>
             <div className='w-44 h-9 border-2 border-black bg-slate-50 rounded-md flex flex-row justify-center'>
               <span>
@@ -89,9 +112,6 @@ function EventProfile(props) {
           </div>
         </div>
       </div>
-
-
-
     </div>
   );
 }

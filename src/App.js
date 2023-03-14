@@ -16,8 +16,8 @@ function App() {
   return (
 
     <div className="App">
-      <TopBar />
-      {/* <EventProfile
+      {/* <TopBar /> */}
+      <EventProfile
         title={'Some Event'}
         host={'Ryan'}
         hostPhoto={'/src/img/host.png'} // TODO: make this work
@@ -27,7 +27,7 @@ function App() {
         startTime={'sometime'}
         endTime={'sometime'}
         group={'somegroupID'}
-      /> */}
+      />
     </div>
   );
 }
