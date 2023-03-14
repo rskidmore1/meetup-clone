@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 async function retrieveComment(parentId) {
 
-  const response = await fetch('http://34.210.145.64:8000/comment/retrieve-comment/' + parentId);
+  const response = await fetch('http://34.210.145.64:8000/comment/retrieve-comments/' + parentId);
   return response; // Note: Can I make this response.json()?
 }
 

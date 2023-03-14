@@ -39,7 +39,7 @@ function EventProfile(props) {
             <p className="text-header font-bold font-sans">
               {title}
             </p>
-          </div>``
+          </div>
           <div className="flex flex-row gap-4 px-2">
             <img src={require('./host.png')} width="50" height="50" />
             <div >
