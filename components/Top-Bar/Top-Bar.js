@@ -6,7 +6,6 @@ export default function TopBar(props) {
   return (
     <div className="flex flex-row justify-between w-full p-3 border-b-2 border-b-black bg-white">
       <div className="flex flex-row gap-4 ml-5">
-        {/* <img src={require("./meetup-logo.png")} alt="" /> */}
         <Image
           src="/meetup-logo.png"
           alt="meetup logo"
@@ -48,7 +47,6 @@ export default function TopBar(props) {
           <div>Notifications</div>
         </div>
         <div className="flex flex-row">
-          {/* <img src={require("./user.png")} alt="" height='20px' width='60px' /> */}
           <Image
             src="/user.png"
             alt="User picture"

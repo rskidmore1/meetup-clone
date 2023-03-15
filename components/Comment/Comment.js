@@ -67,7 +67,6 @@ function Comment(props) {
       <h2 className='font-bold self-start'>Comments</h2>
       {comments?.map((comment) => (
         <div className='flex flex-row gap-1'>
-          {/* <img src={require("./host.png")} alt="" className="self-start rounded-full w-14 h-14" /> */}
           <Image
             src="/host.png"
             alt="host"
@@ -90,7 +89,6 @@ function Comment(props) {
       ))}
       <div className="border-[1px] border-gray-700"></div>
       <div className="self-start flex flex-row gap-1">
-        {/* <img src={require("./host.png")} alt="" className="rounded-full w-14 h-14" /> */}
         <Image
           src="/host.png"
           alt="host"
