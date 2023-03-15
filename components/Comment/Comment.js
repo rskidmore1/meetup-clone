@@ -49,7 +49,7 @@ function Comment(props) {
       );
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, topLevel = true, parentId = '') => {
     e.preventDefault();
     const newComment = {
       "id": "1234",
@@ -59,9 +59,9 @@ function Comment(props) {
         "photo": "./somefile"
       },
       "text": e.target.text.value,
-      "top_level_comment": true,
-      "replies": [],
-      "parent_id": "64091cf1ee0ae9fed40f14ba",
+      "top_level_comment": topLevel,
+      "replies": [], // todo: Can i get rid of this? Remove from endpoint and model
+      "parent_id": parentId,
     };
 
     saveComment(newComment);
@@ -99,7 +99,7 @@ function Comment(props) {
                 Reply
               </button>
               <div className={toggleInput && toggleIndex === index ? '' : 'hidden'}>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={(e) => handleSubmit(e, false)}>
                   <input type="text" name="text" placeholder="Add a comment..." className="w-[400px] h-20" />
                   <button type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
