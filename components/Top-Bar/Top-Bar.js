@@ -9,7 +9,7 @@ export default function TopBar(props) {
         <Image
           src="/meetup-logo.png"
           alt="meetup logo"
-          width={200}
+          width={150}
           height={25}
         />
         <form className="flex flex-row border-[1px] self-center h-2/3 border-black rounded-lg">
@@ -50,7 +50,7 @@ export default function TopBar(props) {
           <Image
             src="/user.png"
             alt="User picture"
-            height={20}
+            height={60}
             width={60}
           />
           <div className="self-center">
