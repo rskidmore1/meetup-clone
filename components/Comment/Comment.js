@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+
 
 async function retrieveComment(parentId) {
 
@@ -7,9 +9,9 @@ async function retrieveComment(parentId) {
 }
 
 async function saveComment(comment) {
+
   const url = 'http://34.210.145.64:8000/comment/save-comment';
   const data = comment;
-  console.log(data);
 
   const response = await fetch(
     url, {
@@ -57,15 +59,20 @@ function Comment(props) {
     saveComment(newComment);
     setComments(comments => [...comments, newComment]);
     e.target.reset();
+
   }
-
-
   return (
     <div className='flex flex-col gap-2'>
       <h2 className='font-bold self-start'>Comments</h2>
       {comments?.map((comment) => (
         <div className='flex flex-row gap-1'>
-          <img src={require("./host.png")} alt="" className="self-start rounded-full w-14 h-14" />
+          <Image
+            src="/host.png"
+            alt="host"
+            className="self-start rounded-full"
+            width={56}
+            height={56}
+          />
           <div className="w-full h-fit bg-white px-3">
             <div className="flex flex-row justify-between">
               <div>{comment?.user?.name}</div>
@@ -81,7 +88,13 @@ function Comment(props) {
       ))}
       <div className="border-[1px] border-gray-700"></div>
       <div className="self-start flex flex-row gap-1">
-        <img src={require("./host.png")} alt="" className="rounded-full w-14 h-14" />
+        <Image
+          src="/host.png"
+          alt="host"
+          className="self-start rounded-full"
+          width={56}
+          height={56}
+        />
         <form onSubmit={handleSubmit}>
           <input type="text" name="text" placeholder="Add a comment..." className="w-[400px] h-20" />
           <button type="submit">

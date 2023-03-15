@@ -1,9 +1,15 @@
-export default function TopBar(props) {
+import Image from 'next/image';
 
+export default function TopBar(props) {
   return (
     <div className="flex flex-row justify-between w-full p-3 border-b-2 border-b-black bg-white">
       <div className="flex flex-row gap-4 ml-5">
-        <img src={require("./meetup-logo.png")} alt="" />
+        <Image
+          src="/meetup-logo.png"
+          alt="meetup logo"
+          width={150}
+          height={25}
+        />
         <form className="flex flex-row border-[1px] self-center h-2/3 border-black rounded-lg">
           <input type="text" className="border-r-[1px] border-r-black" placeholder="Search for keyword" />
           <input type="text" placeholder="Location" />
@@ -39,7 +45,12 @@ export default function TopBar(props) {
           <div>Notifications</div>
         </div>
         <div className="flex flex-row">
-          <img src={require("./user.png")} alt="" height='20px' width='60px' />
+          <Image
+            src="/user.png"
+            alt="User picture"
+            height={60}
+            width={60}
+          />
           <div className="self-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
