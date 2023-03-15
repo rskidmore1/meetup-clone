@@ -71,7 +71,7 @@ function Event() {
 
 
             </div>
-            <h2 className='font-bold p-5 self-start text-red-800'>Details</h2>
+            <h2 className='font-bold p-5 self-start'>Details</h2>
             <p>{detailsParagraph}</p>
             <Comment parentId={parentId} />
           </div>
