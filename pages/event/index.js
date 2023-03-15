@@ -43,7 +43,6 @@ function Event() {
             </p>
           </div>
           <div className="flex flex-row gap-4 px-2">
-            {/* <img src={require('./host.png')} width="50" height="50" /> */}
             <Image
               src="/host.png"
               alt="Host"
@@ -63,7 +62,6 @@ function Event() {
         <div className="flex flex-row justify-between mx-10">
           <div className='w-2/3 flex flex-col gap-5'>
             <div>
-              {/* <img src={require('./event-image.png')} /> */}
               <Image
                 src="/event-image.png"
                 alt="Event"
@@ -90,7 +88,6 @@ function Event() {
             </div>
             <div className='w-44 h-32 bg-slate-50 rounded-md flex flex-row'>
               <div>
-                {/* <img src={require('./tech-in-oc.png')} /> */}
                 <Image
                   src="/tech-in-oc.png"
                   alt="Group image"
