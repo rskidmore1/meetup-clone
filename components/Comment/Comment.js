@@ -32,6 +32,14 @@ function Comment(props) {
   const parentId = props.parentId;
   const [comments, setComments] = useState();
 
+  const [toggleInput, setToggleInput] = useState(false);
+  const [toggleIndex, setToggleIndex] = useState();
+  const toggleInputButton = (index) => {
+    setToggleInput(!toggleInput);
+    setToggleIndex(index);
+  }
+
+
   useEffect(() => {
     retrieveComment(parentId).then(
       result => result.json()).then(
@@ -64,9 +72,9 @@ function Comment(props) {
   return (
     <div className='flex flex-col gap-2'>
       <h2 className='font-bold self-start'>Comments</h2>
-      {comments?.map((comment) => (
+      {comments?.map((comment, index) => (
 
-        <div className='flex flex-row gap-1'>
+        <div className='flex flex-row gap-1' key={index}>
           <Image
             src="/host.png"
             alt="host"
@@ -74,9 +82,7 @@ function Comment(props) {
             width={56}
             height={56}
           />
-
           <div className="w-full pb-4">
-
             <div className="w-full h-fit bg-white px-3 rounded-md">
               <div className="flex flex-row justify-between">
                 <div>{comment?.user?.name}</div>
@@ -88,12 +94,22 @@ function Comment(props) {
                 {comment?.text}
               </div>
             </div>
-            <button className="pl-3 ">
-              Reply
-            </button>
+            <div className="pl-3 ">
+              <button onClick={() => toggleInputButton(index)}>
+                Reply
+              </button>
+              <div className={toggleInput && toggleIndex === index ? '' : 'hidden'}>
+                <form onSubmit={handleSubmit}>
+                  <input type="text" name="text" placeholder="Add a comment..." className="w-[400px] h-20" />
+                  <button type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                    </svg>
+                  </button>
+                </form>
+              </div>
+            </div>
           </div>
-
-
         </div>
 
       ))}
