@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// import Comment from '../components/comment/Comment';
 import Comment from '../../components/Comment/Comment';
+import Image from 'next/image';
 
 async function retrieveEvent(parentId) {
   const response = await fetch('http://34.210.145.64:8000/events/retrieve-event/' + parentId);
@@ -44,6 +44,13 @@ function Event() {
           </div>
           <div className="flex flex-row gap-4 px-2">
             {/* <img src={require('./host.png')} width="50" height="50" /> */}
+            <Image
+              src="/host.png"
+              alt="Host"
+              width={50}
+              height={50}
+            />
+
             <div >
               <p>Hosted by</p>
               <p className='font-bold float-left'>{host}</p>
@@ -57,6 +64,14 @@ function Event() {
           <div className='w-2/3 flex flex-col gap-5'>
             <div>
               {/* <img src={require('./event-image.png')} /> */}
+              <Image
+                src="/event-image.png"
+                alt="Event"
+                width={600}
+                height={200}
+              />
+
+
             </div>
             <h2 className='font-bold p-5 self-start text-red-800'>Details</h2>
             <p>{detailsParagraph}</p>
@@ -76,6 +91,12 @@ function Event() {
             <div className='w-44 h-32 bg-slate-50 rounded-md flex flex-row'>
               <div>
                 {/* <img src={require('./tech-in-oc.png')} /> */}
+                <Image
+                  src="/tech-in-oc.png"
+                  alt="Group image"
+                  width={50}
+                  height={50}
+                />
               </div>
               <div>
                 <p>Tech in OC</p>
