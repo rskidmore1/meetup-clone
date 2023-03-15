@@ -65,6 +65,7 @@ function Comment(props) {
     <div className='flex flex-col gap-2'>
       <h2 className='font-bold self-start'>Comments</h2>
       {comments?.map((comment) => (
+
         <div className='flex flex-row gap-1'>
           <Image
             src="/host.png"
@@ -73,18 +74,28 @@ function Comment(props) {
             width={56}
             height={56}
           />
-          <div className="w-full h-fit bg-white px-3">
-            <div className="flex flex-row justify-between">
-              <div>{comment?.user?.name}</div>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-              </svg>
+
+          <div className="w-full pb-4">
+
+            <div className="w-full h-fit bg-white px-3 rounded-md">
+              <div className="flex flex-row justify-between">
+                <div>{comment?.user?.name}</div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                </svg>
+              </div>
+              <div className="flex justify-self-start">
+                {comment?.text}
+              </div>
             </div>
-            <div className="flex justify-self-start">
-              {comment?.text}
-            </div>
+            <button className="pl-3 ">
+              Reply
+            </button>
           </div>
+
+
         </div>
+
       ))}
       <div className="border-[1px] border-gray-700"></div>
       <div className="self-start flex flex-row gap-1">
