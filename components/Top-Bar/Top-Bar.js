@@ -1,8 +1,6 @@
 import Image from 'next/image';
 
-
 export default function TopBar(props) {
-
   return (
     <div className="flex flex-row justify-between w-full p-3 border-b-2 border-b-black bg-white">
       <div className="flex flex-row gap-4 ml-5">

@@ -68,8 +68,6 @@ function Event() {
                 width={600}
                 height={200}
               />
-
-
             </div>
             <h2 className='font-bold p-5 self-start'>Details</h2>
             <p>{detailsParagraph}</p>

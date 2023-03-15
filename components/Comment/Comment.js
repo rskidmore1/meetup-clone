@@ -9,9 +9,9 @@ async function retrieveComment(parentId) {
 }
 
 async function saveComment(comment) {
+
   const url = 'http://34.210.145.64:8000/comment/save-comment';
   const data = comment;
-  console.log(data);
 
   const response = await fetch(
     url, {
@@ -59,9 +59,8 @@ function Comment(props) {
     saveComment(newComment);
     setComments(comments => [...comments, newComment]);
     e.target.reset();
+
   }
-
-
   return (
     <div className='flex flex-col gap-2'>
       <h2 className='font-bold self-start'>Comments</h2>
