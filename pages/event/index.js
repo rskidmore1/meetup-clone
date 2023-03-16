@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Comment from '../../components/Comment/Comment';
 import Image from 'next/image';
 
-async function retrieveEvent(parentId) {
-  const response = await fetch('http://34.210.145.64:8000/events/retrieve-event/' + parentId);
+async function retrieveEvent(parentObjectId) {
+  const response = await fetch('http://34.210.145.64:8000/events/retrieve-event/' + parentObjectId);
   return response; // Note: Can I make this response.json()?
 }
 
@@ -22,10 +22,10 @@ function Event() {
 
   const [eventData, setEventData] = useState();
 
-  const parentId = '64091cf1ee0ae9fed40f14ba';
+  const parentObjectId = '64091cf1ee0ae9fed40f14ba';
 
   useEffect(() => {
-    retrieveEvent(parentId).then(
+    retrieveEvent(parentObjectId).then(
       result => result.json()).then(
         data => {
           setEventData(data.event);
@@ -71,7 +71,7 @@ function Event() {
             </div>
             <h2 className='font-bold p-5 self-start'>Details</h2>
             <p>{detailsParagraph}</p>
-            <Comment parentId={parentId} />
+            <Comment parentObjectId={parentObjectId} />
           </div>
 
           <div className='flex flex-col content-center gap-5 w-1/3'>

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 
-async function retrieveComment(parentId) {
+async function retrieveComment(parentObjectId) {
 
-  const response = await fetch('http://34.210.145.64:8000/comment/retrieve-comments/' + parentId);
+  const response = await fetch('http://34.210.145.64:8000/comment/retrieve-comments/' + parentObjectId);
   return response; // Note: Can I make this response.json()?
 }
 
@@ -29,7 +29,7 @@ async function saveComment(comment) {
 
 function Comment(props) {
 
-  const parentId = props.parentId;
+  const parentObjectId = props.parentObjectId;
   const [comments, setComments] = useState();
 
   const [toggleInput, setToggleInput] = useState(false);
@@ -39,9 +39,8 @@ function Comment(props) {
     setToggleIndex(index);
   }
 
-
   useEffect(() => {
-    retrieveComment(parentId).then(
+    retrieveComment(parentObjectId).then(
       result => result.json()).then(
         data => {
           setComments(data.comments);
@@ -49,7 +48,7 @@ function Comment(props) {
       );
   }, []);
 
-  const handleSubmit = (e, topLevel = true, parentId = '') => {
+  const handleSubmit = (e, topLevel = true, parentCommentId = '') => {
     e.preventDefault();
     const newComment = {
       "id": "1234",
@@ -61,7 +60,8 @@ function Comment(props) {
       "text": e.target.text.value,
       "top_level_comment": topLevel,
       "replies": [], // todo: Can i get rid of this? Remove from endpoint and model
-      "parent_id": parentId,
+      "parent_comment_id": parentCommentId,
+      "parent_object_id": parentObjectId,
     };
 
     saveComment(newComment);
@@ -92,6 +92,7 @@ function Comment(props) {
               </div>
               <div className="flex justify-self-start">
                 {comment?.text}
+                <div className={console.log(comment)}></div>
               </div>
             </div>
             <div className="pl-3 ">
