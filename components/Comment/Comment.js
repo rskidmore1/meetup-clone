@@ -73,7 +73,7 @@ function Comment(props) {
     <div className='flex flex-col gap-2'>
       <h2 className='font-bold self-start'>Comments</h2>
       {comments?.map((comment, index) => (
-        comment.top_level_comment ? (
+        comment?.top_level_comment ? (
 
           <div className='flex flex-row gap-1' key={index}>
             <Image
