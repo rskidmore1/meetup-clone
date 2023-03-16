@@ -12,7 +12,6 @@ async function saveComment(comment) {
 
   const url = 'http://34.210.145.64:8000/comment/save-comment';
   const data = comment;
-  console.log(comment);
 
   const response = await fetch(
     url, {
@@ -64,7 +63,7 @@ function Comment(props) {
       "parent_comment_id": parentCommentId,
       "parent_object_id": parentObjectId,
     };
-
+    topLevel === false ? setToggleInput(false) : null;
     saveComment(newComment);
     setComments(comments => [...comments, newComment]);
     e.target.reset();
@@ -94,16 +93,12 @@ function Comment(props) {
                 </div>
                 <div className="flex justify-self-start">
                   {comment?.text}
-                  <div className={console.log(comment)}></div>
-
                 </div>
               </div>
               <div className="pl-3 ">
                 <button onClick={() => toggleInputButton(index)}>
                   Reply
                 </button>
-                {/* <div className={console.log(comment?.id)}></div> */}
-                <div className={console.log(comments.filter(childComment => childComment?.parent_comment_id === comment?.id))}></div>
                 {comments.filter(childComment => childComment?.parent_comment_id === comment?.id)?.map((childCommentObject) => (
                   <div className='flex flex-row gap-1' key={index}>
                     <Image
@@ -123,17 +118,11 @@ function Comment(props) {
                         </div>
                         <div className="flex justify-self-start">
                           {childCommentObject?.text}
-                          {/* <div className={console.log(comment)}></div> */}
-
                         </div>
                       </div>
                     </div>
                   </div>
-                ))
-
-                }
-
-                {/* Need to make a funciton to get all the related comments and then map over them  */}
+                ))}
                 <div className={toggleInput && toggleIndex === index ? '' : 'hidden'}>
                   <form onSubmit={(e) => handleSubmit(e, false, comment?.id)}>
                     <input type="text" name="text" placeholder="Add a comment..." className="w-[400px] h-20" />
