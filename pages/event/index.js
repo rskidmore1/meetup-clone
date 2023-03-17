@@ -7,7 +7,6 @@ async function retrieveEvent(parentObjectId) {
   return response; // Note: Can I make this response.json()?
 }
 
-
 function Event() {
 
   let title = 'Some Event';

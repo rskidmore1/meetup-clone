@@ -1,15 +1,35 @@
 import Image from "next/image";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import React, { useState, useEffect } from 'react';
+
+async function retrieveGroup(parentObjectId) {
+  const response = await fetch('http://34.210.145.64:8000/group/retrieve-group/' + parentObjectId);
+  return response; // Note: Can I make this response.json()?
+}
 
 function Group() {
-  return (
 
+  const groupID = '6414a97c4e69425c9105db21';
+  const [group, setGroup] = useState();
+
+  useEffect(() => {
+    retrieveGroup(groupID).then(
+      result => result.json()).then(
+        data => {
+          setGroup(data);
+        }
+      );
+  }, [])
+
+
+
+  return (
     <div className="flex flex-row justify-between mx-10 mt-3">
       <div className='w-2/3 flex flex-col gap-5'>
         <div>
           <Image
-            src="/group-image.png"
+            src={group?.group.picture}
             alt="Event"
             width={600}
             height={200}
@@ -28,7 +48,7 @@ function Group() {
 
             <TabPanel>
               <div>
-                <p>Details</p>
+                <p>{group?.group.description}</p>
               </div>
             </TabPanel>
             <TabPanel>
@@ -54,7 +74,7 @@ function Group() {
       <div className='flex flex-col content-center gap-5 w-1/3'>
         <div className="flex flex-col gap-1">
           <div>
-            <h1 className="font-bold text-lg">OC Tech</h1>
+            <h1 className="font-bold text-lg">{group?.group.name}</h1>
             {/* TODO: make much larger font group name */}
           </div>
           <div className="flex flex-row">
@@ -84,7 +104,7 @@ function Group() {
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
               <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
             </svg>
-            <span className="text-gray-800">Irvine, CA</span>
+            <span className="text-gray-800">{group?.group.location}</span>
           </div>
           <div className="flex flex-row">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
