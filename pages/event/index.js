@@ -32,7 +32,6 @@ function Event() {
         data => {
           setEventData(data.event);
           setHostsData(data.hosts[0]);
-          // console.log(data);
         }
       );
   }, []);
@@ -53,12 +52,10 @@ function Event() {
               width={50}
               height={50}
             />
-
             <div >
               <p>Hosted by</p>
               <p className='font-bold float-left'>{hostsData?.name}</p>
             </div>
-
           </div>
         </div>
       </div>
@@ -77,7 +74,6 @@ function Event() {
             <p>{detailsParagraph}</p>
             <Comment parentObjectId={parentObjectId} />
           </div>
-
           <div className='flex flex-col content-center gap-5 w-1/3'>
             <div className='w-44 h-9 border-2 border-black bg-slate-50 rounded-md flex flex-row justify-center'>
               <span>
@@ -86,7 +82,6 @@ function Event() {
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
               </svg>
-
             </div>
             <div className='w-44 h-32 bg-slate-50 rounded-md flex flex-row'>
               <div>
@@ -102,7 +97,6 @@ function Event() {
                 <p>Public group</p>
                 <p>Rating</p>
               </div>
-              {/* TODO: Should we pass a group ID and to look up? */}
             </div>
             <div className='w-44 h-fit bg-slate-50 rounded-md flex flex-col'>
               <div className='flex flex-row'>
@@ -127,7 +121,6 @@ function Event() {
                 Map
               </div>
             </div>
-
             <div>
               Event Chat
             </div>
