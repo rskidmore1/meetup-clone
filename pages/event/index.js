@@ -21,14 +21,18 @@ function Event() {
   let group = "somegroupID";
 
   const [eventData, setEventData] = useState();
+  const [hostsData, setHostsData] = useState();
 
-  const parentObjectId = '64091cf1ee0ae9fed40f14ba';
+  // const parentObjectId = '64091cf1ee0ae9fed40f14ba';
+  const parentObjectId = '6418fc1bfa9f8c7a6804cf78';
 
   useEffect(() => {
     retrieveEvent(parentObjectId).then(
       result => result.json()).then(
         data => {
           setEventData(data.event);
+          setHostsData(data.hosts[0]);
+          // console.log(data);
         }
       );
   }, []);
@@ -44,7 +48,7 @@ function Event() {
           </div>
           <div className="flex flex-row gap-4 px-2">
             <Image
-              src="/host.png"
+              src={hostsData?.picture}
               alt="Host"
               width={50}
               height={50}
@@ -52,7 +56,7 @@ function Event() {
 
             <div >
               <p>Hosted by</p>
-              <p className='font-bold float-left'>{host}</p>
+              <p className='font-bold float-left'>{hostsData?.name}</p>
             </div>
 
           </div>
