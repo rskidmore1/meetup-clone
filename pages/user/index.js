@@ -1,38 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
+async function retrieveUser(parentObjectId) {
+  const response = await fetch('http://34.210.145.64:8000/user/retrieve-user/' + parentObjectId);
+  return response; // Note: Can I make this response.json()?
+}
 
 function Event() {
 
+  const [user, setUser] = useState();
+
+  const parentObjectId = '6418ea4bfa9f8c7a6804cf77';
+
+  useEffect(() => {
+    retrieveUser(parentObjectId).then(
+      result => result.json()).then(
+        data => {
+          setUser(data.user);
+          console.log(data.user);
+        }
+      );
+  }, []);
+
   return (
     <div>
-      <div className="h-36 mb-10 w-full flex justify-items-start bg-white">
-        <div>
-          <div className='px-2'>
-            <p className="text-header font-bold font-sans">
-              title
-            </p>
-          </div>
-          <div className="flex flex-row gap-4 px-2">
-            {/* <Image
-              src='./some-image.png'
-              alt="Host"
-              width={50}
-              height={50}
-            /> */}
-            <div >
-              <p>Hosted by</p>
-              <p className='font-bold float-left'>name</p>
-            </div>
-          </div>
-        </div>
-      </div>
       <div>
         <div className="flex flex-row justify-between mx-10">
           <div className='w-1/4'>Make group info here</div>
           <div className='w-1/2 flex flex-col gap-5'>
             <div className='flex flex-col'>
-              <span>Ryan</span>
+              <span>{user?.name}</span>
               <span>Organizer</span>
               <span>Give member a custom title</span>
             </div>
@@ -88,7 +85,7 @@ function Event() {
             </div>
             <div>
               <p className='font-bold'>Introduction:</p>
-              <p>Add introduction</p>
+              <p>{user?.introduction}</p>
             </div>
             <div>
               <p className='font-bold'>What Ryan is saying about this Meetup Group</p>
@@ -103,7 +100,7 @@ function Event() {
           </div>
           <div className='flex flex-col content-center gap-5 w-1/4'>
             <Image
-              src='/user.png'
+              src={user?.picture}
               alt="user"
               width={300}
               height={300}
