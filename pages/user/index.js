@@ -100,13 +100,19 @@ function Event() {
             <div>
               <span>Looking to post a greeting? Start a conversation instead.</span>
             </div>
-
           </div>
           <div className='flex flex-col content-center gap-5 w-1/4'>
-
-
-            {/*  User picture */}
-
+            <Image
+              src='/user.png'
+              alt="user"
+              width={300}
+              height={300}
+            />
+            <span>Change you photo</span>
+            <span>Photos 2</span>
+            <div>
+              Member of ## other Meetups
+            </div>
           </div>
         </div>
       </div>
