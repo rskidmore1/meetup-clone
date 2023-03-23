@@ -2,6 +2,8 @@ import Image from "next/image";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import React, { useState, useEffect } from 'react';
+import Members from '../../components/Members/Members';
+
 
 async function retrieveGroup(parentObjectId) {
   const response = await fetch('http://34.210.145.64:8000/group/retrieve-group/' + parentObjectId);
@@ -55,7 +57,7 @@ function Group() {
               <p>Replace with components</p>
             </TabPanel>
             <TabPanel>
-              <p>Replace with components</p>
+              <Members groupId={groupID} />
             </TabPanel>
             <TabPanel>
               <p>Replace with components</p>
