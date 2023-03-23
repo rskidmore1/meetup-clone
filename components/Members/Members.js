@@ -1,4 +1,27 @@
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useState } from 'react';
+
 function Members(props) {
+  const [scrollItems, setScrollItems] = useState(Array.from({ length: 20 }));
+  const [hasMore, setHasMore] = useState(true);
+
+  const style = {
+    height: 30,
+    border: "1px solid green",
+    margin: 6,
+    padding: 8
+  };
+
+  const fetchMoreData = () => {
+    if (scrollItems.length >= 500) {
+      setHasMore(false);
+      return;
+    }
+    setTimeout(() => {
+      setScrollItems(scrollItems => [...scrollItems, Array.from({ length: 20 })]);
+    }, 500);
+  };
+
   return (
     <div className="flex flex-row">
       <div className="flex w-1/3">
@@ -33,7 +56,23 @@ function Members(props) {
         </div>
       </div>
       <div className="flex w-2/3">
-
+        <InfiniteScroll
+          dataLength={scrollItems.length}
+          next={fetchMoreData}
+          hasMore={hasMore}
+          loader={<h4>Loading...</h4>}
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+          }
+        >
+          {scrollItems.map((i, index) => (
+            <div style={style} key={index}>
+              div - #{index}
+            </div>
+          ))}
+        </InfiniteScroll>
       </div>
     </div>
   )
