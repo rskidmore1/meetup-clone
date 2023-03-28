@@ -144,7 +144,7 @@ function Event() {
             </svg>
           </span>
           <span>
-            <button type="button" className="px-5 py-3 bg-red-500 rounded-lg">Attend</button>
+            <button type="button" className="px-5 py-3 bg-red-500 rounded-lg font-bold text-white">Attend</button>
           </span>
         </div>
 
