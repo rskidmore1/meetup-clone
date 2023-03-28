@@ -23,7 +23,7 @@ function Event() {
   const [hostsData, setHostsData] = useState();
 
   // const parentObjectId = '64091cf1ee0ae9fed40f14ba';
-  const parentObjectId = '6418fc1bfa9f8c7a6804cf78';
+  const parentObjectId = '6423680881ba99669b08fa7d';
 
   useEffect(() => {
     retrieveEvent(parentObjectId).then(
