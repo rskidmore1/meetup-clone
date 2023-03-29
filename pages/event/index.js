@@ -6,7 +6,27 @@ async function retrieveEvent(parentObjectId) {
   const response = await fetch('http://34.210.145.64:8000/events/retrieve-event/' + parentObjectId);
   return response; // Note: Can I make this response.json()?
 }
+// Make into put function
+async function saveAttendee(userId, parentObjectId) {
 
+  const url = 'http://34.210.145.64:8000/events/save-attendee';
+
+  const data = { "userId": userId, "eventId": parentObjectId };
+
+  const response = await fetch(
+    url, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+    Cache: 'default',
+  });
+
+  return response;
+
+}
 function Event() {
 
   let title = 'Some Event';
@@ -22,9 +42,10 @@ function Event() {
   const [eventData, setEventData] = useState();
   const [hostsData, setHostsData] = useState();
   const [counter, setCounter] = useState(0);
+  const [modal, setModal] = useState(false);
 
-  // const parentObjectId = '64091cf1ee0ae9fed40f14ba';
   const parentObjectId = '6423680881ba99669b08fa7d';
+  const userId = "64221158e1bbeb5fc205ed21"
 
   //increase counter
   const increase = () => {
@@ -155,20 +176,21 @@ function Event() {
             </svg>
           </span>
           <span>
-            <button type="button" className="px-5 py-3 bg-red-500 rounded-lg font-bold text-white">Attend</button>
+            <button type="button" className="px-5 py-3 bg-red-500 rounded-lg font-bold text-white" onClick={() => setModal(true)}>Attend</button>
           </span>
         </div>
       </div>
 
-      <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+      {/* Modal */}
+      <div className={"relative z-10 " + (modal ? "" : "hidden")} aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+        <div className="fixed inset-0 z-10 overflow-y-auto">
+          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
 
-        <div class="fixed inset-0 z-10 overflow-y-auto">
-          <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-
-            <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-              <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div className="float-right cursor-pointer" onClick={() => setModal(false)}>X</div>
                 <h1 className="font-bold">Complete your RSVP</h1>
                 <div>Are you bringing anyone?</div>
                 <div className="flex flex-row justify-between border-[1px] border-black max-w-full h-24 px-5 items-center">
@@ -179,7 +201,8 @@ function Event() {
                   </div>
                 </div>
                 <div className="max-w-full mt-4">
-                  <button type="button" className="w-full py-2 border-[1px] border-blue-400 text-blue-400 rounded-lg">Submit</button>
+                  {/* Make submit attendee here */}
+                  <button type="button" className="w-full py-2 border-[1px] border-blue-400 text-blue-400 rounded-lg" onClick={() => saveAttendee(userId, parentObjectId)}>Submit</button>
                 </div>
               </div>
 
