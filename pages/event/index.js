@@ -4,13 +4,11 @@ import Image from 'next/image';
 
 async function retrieveEvent(parentObjectId) {
   const response = await fetch('http://34.210.145.64:8000/events/retrieve-event/' + parentObjectId);
-  return response; // Note: Can I make this response.json()?
+  return response;
 }
-// Make into put function
+
 async function saveAttendee(userId, parentObjectId) {
-
   const url = 'http://34.210.145.64:8000/events/save-attendee';
-
   const data = { "userId": userId, "eventId": parentObjectId };
 
   const response = await fetch(
@@ -27,11 +25,12 @@ async function saveAttendee(userId, parentObjectId) {
   return response;
 
 }
+
 function Event() {
 
   let title = 'Some Event';
   let host = "Ryan";
-  let hostPhoto = "/src/img/host.png"; // TODO: CHA
+  let hostPhoto = "/src/img/host.png";
   let photo = "./someline";
   let location = "someaddress";
   let detailsParagraph = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae erat eleifend, egestas lorem eu, vehicula nisl. Cras bibendum tellus eu purus accumsan, quis aliquet ipsum cursus. Sed nec iaculis urna, ut lobortis lacus. Vestibulum at sem bibendum, porta dolor vel, fermentum tortor. Nulla non aliquam arcu. Integer eget aliquet risus. Nullam non malesuada felis. Sed commodo hendrerit erat, et placerat felis vulputate vel. Suspendisse non porta lectus. Cras in neque gravida, lacinia ex ut, tempus est. Curabitur quis massa non ante porta lacinia. Nunc nec urna ex. Maecenas lorem nunc, finibus sit amet tincidunt sit amet, fringilla euismod dolor. Quisque risus diam, consequat eu posuere maximus, finibus ac nulla. Donec feugiat ante id est elementum, a maximus purus sodales. Nullam efficitur odio vel nisl tincidunt tristique. Maecenas vestibulum bibendum arcu, at rutrum sem hendrerit ut. In a facilisis lacus. Donec vitae venenatis enim, sed commodo nibh. Aenean at blandit est. In id faucibus elit. Phasellus lobortis, nunc nec auctor accumsan, orci odio tempor nibh, ac iaculis urna justo sit amet tellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere ipsum sit amet ultrices gravida.';
@@ -158,6 +157,7 @@ function Event() {
           </div>
         </div>
       </div>
+      {/* Bottom Bar */}
       <div class="fixed bottom-0 left-0 z-50 w-full h-20 bg-white flex flex-row justify-between">
         <div className="flex flex-col self-center">
           <span>WED, APR 26 - 6:00 PDT</span>
@@ -184,10 +184,8 @@ function Event() {
       {/* Modal */}
       <div className={"relative z-10 " + (modal ? "" : "hidden")} aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-
         <div className="fixed inset-0 z-10 overflow-y-auto">
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-
             <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
               <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                 <div className="float-right cursor-pointer" onClick={() => setModal(false)}>X</div>
@@ -201,16 +199,13 @@ function Event() {
                   </div>
                 </div>
                 <div className="max-w-full mt-4">
-                  {/* Make submit attendee here */}
                   <button type="button" className="w-full py-2 border-[1px] border-blue-400 text-blue-400 rounded-lg" onClick={() => saveAttendee(userId, parentObjectId)}>Submit</button>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       </div>
-
     </div>
   );
 }
