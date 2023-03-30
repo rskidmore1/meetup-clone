@@ -34,14 +34,17 @@ function Members(props) {
     padding: 8
   };
 
+  // console.log(members?.slice(scrollItems?.length, members?.length));
+
   const fetchMoreData = () => {
-    if (members.length <= scrollItems.length) {
+    if (members.length === scrollItems.length) {
       setHasMore(false);
       return;
     }
-    setTimeout(() => {
-      setScrollItems(scrollItems => [...scrollItems, members.slice(scrollItems.length, scrollItems.length + 10)]);
-    }, 500);
+
+    setScrollItems(scrollItems => [...scrollItems, members.slice(scrollItems.length - 1, members.length - 1)]);
+    // setScrollItems(members);
+    console.log('From fetchMore');
 
   };
 
@@ -101,12 +104,12 @@ function Members(props) {
             <div key={index} className="flex flex-row justify-between">
               <div className="flex flex-row">
                 <div>
-                  <Image
+                  {/* <Image
                     src={i.picture}
                     alt="Member"
                     width={50}
                     height={50}
-                  />
+                  /> */}
                 </div>
                 <div className="flex flex-col">
                   <span>
