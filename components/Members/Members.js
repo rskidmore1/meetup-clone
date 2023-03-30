@@ -1,9 +1,31 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Image from "next/image";
+
+
+async function retrieveMembers(groupName) {
+  const response = await fetch('http://35.86.78.63:8000/user/retrieve-members/' + `${groupName}`);
+  return response; // Note: Can I make this response.json()?
+}
 
 function Members(props) {
-  const [scrollItems, setScrollItems] = useState(Array.from({ length: 20 }));
+  // const [scrollItems, setScrollItems] = useState(Array.from({ length: 20 }));
+  // const [hasMore, setHasMore] = useState(true);
+  const [scrollItems, setScrollItems] = useState();
   const [hasMore, setHasMore] = useState(true);
+  const [members, setMembers] = useState();
+
+  console.log(props.groupName);
+
+  useEffect(() => {
+    retrieveMembers(props.groupName).then(
+      result => result.json()).then(
+        data => {
+          setMembers(data.members);
+          setScrollItems(data.members.slice(0, 11))
+        }
+      );
+  }, []);
 
   const style = {
     height: 30,
@@ -13,13 +35,14 @@ function Members(props) {
   };
 
   const fetchMoreData = () => {
-    if (scrollItems.length >= 500) {
+    if (members.length <= scrollItems.length) {
       setHasMore(false);
       return;
     }
     setTimeout(() => {
-      setScrollItems(scrollItems => [...scrollItems, Array.from({ length: 20 })]);
+      setScrollItems(scrollItems => [...scrollItems, members.slice(scrollItems.length, scrollItems.length + 10)]);
     }, 500);
+
   };
 
   return (
@@ -57,7 +80,7 @@ function Members(props) {
       </div>
       <div className="flex w-2/3">
         <InfiniteScroll
-          dataLength={scrollItems.length}
+          dataLength={10}
           next={fetchMoreData}
           hasMore={hasMore}
           loader={<h4>Loading...</h4>}
@@ -67,9 +90,23 @@ function Members(props) {
             </p>
           }
         >
-          {scrollItems.map((i, index) => (
-            <div style={style} key={index}>
-              div - #{index}
+          {scrollItems?.map((i, index) => (
+            <div key={index}>
+              <Image
+                src={i.picture}
+                alt="Member"
+                width={100}
+                height={100}
+              />
+              <span>
+                {i.name}
+              </span>
+              <span>
+                Visited {i.last_visited_date}
+              </span>
+              <span>
+                Joined {i.joined_date}
+              </span>
             </div>
           ))}
         </InfiniteScroll>

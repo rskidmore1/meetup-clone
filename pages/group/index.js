@@ -12,7 +12,8 @@ async function retrieveGroup(parentObjectId) {
 
 function Group() {
 
-  const groupID = '6414a97c4e69425c9105db21';
+  // const groupID = '6414a97c4e69425c9105db21'; //OC happy hour
+  const groupID = '6425c4e287ce053cff07f502'; // OC Python
 
   const [group, setGroup] = useState();
 
@@ -57,7 +58,7 @@ function Group() {
               <p>Replace with components</p>
             </TabPanel>
             <TabPanel>
-              <Members groupId={groupID} />
+              <Members groupName={group?.group.name} />
             </TabPanel>
             <TabPanel>
               <p>Replace with components</p>
