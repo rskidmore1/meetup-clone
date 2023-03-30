@@ -6,7 +6,7 @@ import Members from '../../components/Members/Members';
 
 
 async function retrieveGroup(parentObjectId) {
-  const response = await fetch('http://34.210.145.64:8000/group/retrieve-group/' + parentObjectId);
+  const response = await fetch('http://35.86.78.63:8000/group/retrieve-group/' + parentObjectId);
   return response; // Note: Can I make this response.json()?
 }
 

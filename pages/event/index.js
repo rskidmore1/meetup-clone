@@ -3,7 +3,7 @@ import Comment from '../../components/Comment/Comment';
 import Image from 'next/image';
 
 async function retrieveEvent(parentObjectId) {
-  const response = await fetch('http://34.210.145.64:8000/events/retrieve-event/' + parentObjectId);
+  const response = await fetch('http://35.86.78.63:8000/events/retrieve-event/' + parentObjectId);
   return response; // Note: Can I make this response.json()?
 }
 
