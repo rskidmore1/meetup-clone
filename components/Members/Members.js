@@ -48,10 +48,17 @@ function Members(props) {
   return (
     <div className="flex flex-row">
       <div className="flex w-1/3">
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 px-2">
           <div>
             {/* TODO: make into tabs list */}
-            <div>All Members</div>
+            <div className="flex flex-row justify-between">
+              <span>
+                All Members:
+              </span>
+              <span>
+                {members?.length}
+              </span>
+            </div>
             <div>Leadership team</div>
           </div>
           <div>
@@ -78,7 +85,7 @@ function Members(props) {
           </div>
         </div>
       </div>
-      <div className="flex w-2/3">
+      <div className="flex w-2/3 bg-white px-5 py-3 rounded-lg" >
         <InfiniteScroll
           dataLength={10}
           next={fetchMoreData}
@@ -91,22 +98,33 @@ function Members(props) {
           }
         >
           {scrollItems?.map((i, index) => (
-            <div key={index}>
-              <Image
-                src={i.picture}
-                alt="Member"
-                width={100}
-                height={100}
-              />
-              <span>
-                {i.name}
-              </span>
-              <span>
-                Visited {i.last_visited_date}
-              </span>
-              <span>
-                Joined {i.joined_date}
-              </span>
+            <div key={index} className="flex flex-row justify-between">
+              <div className="flex flex-row">
+                <div>
+                  <Image
+                    src={i.picture}
+                    alt="Member"
+                    width={50}
+                    height={50}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <span>
+                    {i.name}
+                  </span>
+                  <span>
+                    Visited {i.last_visited_date}
+                  </span>
+                  <span>
+                    Joined {i.joined_date}
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-row items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+                </svg>
+              </div>
             </div>
           ))}
         </InfiniteScroll>
