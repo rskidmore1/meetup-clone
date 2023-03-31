@@ -2,9 +2,10 @@ import Image from "next/image";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import React, { useState, useEffect } from 'react';
+import Events from "../../components/Group/Events";
 
 async function retrieveGroup(parentObjectId) {
-  const response = await fetch('http://34.210.145.64:8000/group/retrieve-group/' + parentObjectId);
+  const response = await fetch('http://35.86.78.63:8000/group/retrieve-group/' + parentObjectId);
   return response; // Note: Can I make this response.json()?
 }
 
@@ -52,7 +53,8 @@ function Group() {
               </div>
             </TabPanel>
             <TabPanel>
-              <p>Replace with components</p>
+              <Events groupName={'OC Python'} />
+              {/* Put group name here */}
             </TabPanel>
             <TabPanel>
               <p>Replace with components</p>

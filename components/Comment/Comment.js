@@ -4,13 +4,13 @@ import Image from 'next/image';
 
 async function retrieveComment(parentObjectId) {
 
-  const response = await fetch('http://34.210.145.64:8000/comment/retrieve-comments/' + parentObjectId);
+  const response = await fetch('http://35.86.78.63:8000/comment/retrieve-comments/' + parentObjectId);
   return response; // Note: Can I make this response.json()?
 }
 
 async function saveComment(comment) {
 
-  const url = 'http://34.210.145.64:8000/comment/save-comment';
+  const url = 'http://35.86.78.63:8000/comment/save-comment';
   const data = comment;
 
   const response = await fetch(
