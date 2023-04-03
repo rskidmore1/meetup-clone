@@ -35,7 +35,7 @@ function Members(props) {
   };
   useEffect(() => {
 
-    if (members.length <= scrollItems.length) {
+    if (members?.length <= scrollItems?.length) {
       setHasMore(false);
       return;
     }
