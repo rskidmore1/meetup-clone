@@ -9,13 +9,9 @@ async function retrieveMembers(groupName) {
 }
 
 function Members(props) {
-  // const [scrollItems, setScrollItems] = useState(Array.from({ length: 20 }));
-  // const [hasMore, setHasMore] = useState(true);
   const [scrollItems, setScrollItems] = useState();
   const [hasMore, setHasMore] = useState(true);
   const [members, setMembers] = useState();
-
-  console.log(props.groupName);
 
   useEffect(() => {
     retrieveMembers(props.groupName).then(
@@ -34,17 +30,15 @@ function Members(props) {
     padding: 8
   };
 
-  // console.log(members?.slice(scrollItems?.length, members?.length));
-
   const fetchMoreData = () => {
-    if (members.length === scrollItems.length) {
+    if (members.length <= scrollItems.length) {
       setHasMore(false);
       return;
     }
+    console.log('Members length: ', members.length);
+    console.log('Scrollitems length: ', scrollItems.length);
 
-    setScrollItems(scrollItems => [...scrollItems, members.slice(scrollItems.length - 1, members.length - 1)]);
-    // setScrollItems(members);
-    console.log('From fetchMore');
+    setScrollItems(scrollItems => [...scrollItems, ...members.slice(scrollItems.length - 1, members.length - 1)]);
 
   };
 
@@ -104,12 +98,12 @@ function Members(props) {
             <div key={index} className="flex flex-row justify-between">
               <div className="flex flex-row">
                 <div>
-                  {/* <Image
+                  <Image
                     src={i.picture}
                     alt="Member"
                     width={50}
                     height={50}
-                  /> */}
+                  />
                 </div>
                 <div className="flex flex-col">
                   <span>
