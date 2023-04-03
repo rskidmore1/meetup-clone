@@ -31,16 +31,15 @@ function Members(props) {
   };
 
   const fetchMoreData = () => {
+    setScrollItems(scrollItems => [...scrollItems, ...members.slice(scrollItems.length - 1, members.length - 1)]);
+  };
+  useEffect(() => {
+
     if (members.length <= scrollItems.length) {
       setHasMore(false);
       return;
     }
-    console.log('Members length: ', members.length);
-    console.log('Scrollitems length: ', scrollItems.length);
-
-    setScrollItems(scrollItems => [...scrollItems, ...members.slice(scrollItems.length - 1, members.length - 1)]);
-
-  };
+  }, [scrollItems]);
 
   return (
     <div className="flex flex-row">
