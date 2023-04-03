@@ -33,8 +33,8 @@ function Members(props) {
   const fetchMoreData = () => {
     setScrollItems(scrollItems => [...scrollItems, ...members.slice(scrollItems.length - 1, members.length - 1)]);
   };
-  useEffect(() => {
 
+  useEffect(() => {
     if (members?.length <= scrollItems?.length) {
       setHasMore(false);
       return;
@@ -44,9 +44,8 @@ function Members(props) {
   return (
     <div className="flex flex-row">
       <div className="flex w-1/3">
-        <div className="flex flex-col gap-5 px-2">
+        <div className="px-2">
           <div>
-            {/* TODO: make into tabs list */}
             <div className="flex flex-row justify-between">
               <span>
                 All Members:
@@ -55,7 +54,6 @@ function Members(props) {
                 {members?.length}
               </span>
             </div>
-            <div>Leadership team</div>
           </div>
           <div>
             <h1 className="font-bold">Organizer Tools</h1>
