@@ -32,10 +32,10 @@ function Events(props) {
         </span>
 
       </div>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 w-1/2">
         {/* Make into a map and card */}
         {events?.map((event) => (
-          <div className="flex flex-col w-3/4 bg-white ">
+          <div className="flex flex-col  bg-white w-full">
             <div className="flex flex-row">
               <div>
                 <div>
@@ -43,7 +43,7 @@ function Events(props) {
                     {event?.start_time}
                   </div>
                   <div>
-                    Friday at Hangar 24
+                    {event?.title}
                   </div>
                   <div className="flex flex-row">
                     <span>
@@ -53,42 +53,26 @@ function Events(props) {
                       </svg>
                     </span>
                     <span>
-                      Hangar 24 Orange County
+                      {event?.location}
                     </span>
                   </div>
                   <div>
-                    some picture
-                    {/* REplace with picture */}
+                    {/* {event?.picture} */}
+                    {/* TODO: make picture */}
                   </div>
 
                 </div>
                 <div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, necessitatibus! Voluptatem id maxime blanditiis atque!
+                  {event?.details_paragraph}
                 </div>
                 <div className="flex flex-row justify-between">
-                  <div className="flex flex-row gap-5">
-                    <span>
-                      OOOO
-                      {/* Put attendee pictures here */}
-                      {/* this will need aggregate query */}
-                    </span>
-                    <span>
-                      15 Attendees
-                      {/*  Put number of attendees */}
-                      {/* This willl need aggregate query */}
-                    </span>
-                  </div>
-                  <div className="flex flex-row gap-10">
-                    <button type="button">
-                      Manage
-                    </button>
-                    {/* Make into a drop down */}
-                    <button type="button">
-                      Attend
-                    </button>
-
-                  </div>
-
+                  <span>
+                    {event?.attendees.length} Attendees
+                  </span>
+                  <button type="button" className="px-2 py-4 border-[1px] border-blue-200 text-blue-200">
+                    Attend
+                  </button>
+                  {/* TODO: add going or not going after making user log-in */}
                 </div>
               </div>
             </div>
