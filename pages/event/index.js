@@ -1,17 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import Comment from '../../components/Comment/Comment';
 import Image from 'next/image';
+import Modal from '../../components/Event/Modal';
+import BottonBar from '../../components/Event/Bottom-Bar';
+
+
 
 async function retrieveEvent(parentObjectId) {
+
   const response = await fetch('http://35.86.78.63:8000/events/retrieve-event/' + parentObjectId);
   return response; // Note: Can I make this response.json()?
+}
+
+async function saveAttendee(userId, parentObjectId) {
+  const url = 'http://35.86.78.63/:8000/events/save-attendee';
+  const data = { "userId": userId, "eventId": parentObjectId };
+
+  const response = await fetch(
+    url, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+    Cache: 'default',
+  });
+
+  return response;
 }
 
 function Event() {
 
   let title = 'Some Event';
   let host = "Ryan";
-  let hostPhoto = "/src/img/host.png"; // TODO: CHA
+  let hostPhoto = "/src/img/host.png";
   let photo = "./someline";
   let location = "someaddress";
   let detailsParagraph = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae erat eleifend, egestas lorem eu, vehicula nisl. Cras bibendum tellus eu purus accumsan, quis aliquet ipsum cursus. Sed nec iaculis urna, ut lobortis lacus. Vestibulum at sem bibendum, porta dolor vel, fermentum tortor. Nulla non aliquam arcu. Integer eget aliquet risus. Nullam non malesuada felis. Sed commodo hendrerit erat, et placerat felis vulputate vel. Suspendisse non porta lectus. Cras in neque gravida, lacinia ex ut, tempus est. Curabitur quis massa non ante porta lacinia. Nunc nec urna ex. Maecenas lorem nunc, finibus sit amet tincidunt sit amet, fringilla euismod dolor. Quisque risus diam, consequat eu posuere maximus, finibus ac nulla. Donec feugiat ante id est elementum, a maximus purus sodales. Nullam efficitur odio vel nisl tincidunt tristique. Maecenas vestibulum bibendum arcu, at rutrum sem hendrerit ut. In a facilisis lacus. Donec vitae venenatis enim, sed commodo nibh. Aenean at blandit est. In id faucibus elit. Phasellus lobortis, nunc nec auctor accumsan, orci odio tempor nibh, ac iaculis urna justo sit amet tellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere ipsum sit amet ultrices gravida.';
@@ -21,9 +44,12 @@ function Event() {
 
   const [eventData, setEventData] = useState();
   const [hostsData, setHostsData] = useState();
+  const [modal, setModal] = useState(false);
 
-  // const parentObjectId = '64091cf1ee0ae9fed40f14ba';
-  const parentObjectId = '6418fc1bfa9f8c7a6804cf78';
+
+  const parentObjectId = '6423680881ba99669b08fa7d';
+  const userId = "64221158e1bbeb5fc205ed21"
+
 
   useEffect(() => {
     retrieveEvent(parentObjectId).then(
@@ -126,6 +152,8 @@ function Event() {
           </div>
         </div>
       </div>
+      <BottonBar title={title} setModal={setModal} />
+      <Modal modal={modal} setModal={setModal} saveAttendee={saveAttendee} userId={userId} parentObjectId={parentObjectId} />
     </div>
   );
 }
