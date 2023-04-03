@@ -1,4 +1,23 @@
+import React, { useState, useEffect } from 'react';
+
+
+async function retrieveEvents(groupName) {
+  const response = await fetch('http://35.86.78.63:8000/events/retrieve-events/' + groupName);
+  return response;
+}
+
 function Events(props) {
+  const [events, setEvents] = useState();
+
+  useEffect(() => {
+    retrieveEvents(props.groupName).then(
+      result => result.json()).then(
+        data => {
+          setEvents(data.events);
+        }
+      );
+  }, []);
+
   return (
     <div className="flex flex-row w-[1000px] gap-10">
       <div className="flex flex-col w-1/4 bg-white">
@@ -15,6 +34,9 @@ function Events(props) {
       </div>
       <div className="flex flex-col w-3/4 bg-white ">
         {/* Make into a map and card */}
+        {events?.map((event) => (
+          <div>Helllo</div>
+        ))}
         <div className="flex flex-row">
           <div>
             <div>
