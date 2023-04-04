@@ -74,7 +74,7 @@ function Events(props) {
               <span className='self-end'>
                 {event?.attendees.length} Attendees
               </span>
-              <button type="button" className="p-2 border-[1px] border-blue-200 text-blue-200">
+              <button type="button" className="p-2 border-[1px] border-blue-500 text-blue-500">
                 Attend
               </button>
               {/* TODO: add going or not going after making user log-in */}
