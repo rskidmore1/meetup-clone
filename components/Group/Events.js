@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
+import Image from 'next/image';
 
 
 async function retrieveEvents(groupName) {
@@ -35,23 +36,41 @@ function Events(props) {
         {/* Make into a map and card */}
         {events?.map((event) => (
           <div className="flex flex-col  bg-white w-full rounded-lg p-2">
-            <div>
-              {event?.start_time}
+
+            <div className="flex flex-row justify-between">
+              <div>
+                <div>
+                  {event?.start_time}
+                </div>
+                <div className="text-2xl">
+                  {event?.title}
+                </div>
+                <div className="flex flex-row gap-2 mb-2">
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-400">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                    </svg>
+                  </span>
+                  <span>
+                    {event?.location}
+                  </span>
+                </div>
+              </div>
+              <div>
+                <Image
+                  src={event?.photo}
+                  alt="Event Image"
+                  width={125}
+                  height={125}
+                  className="rounded-lg"
+                />
+
+              </div>
             </div>
-            <div className="text-2xl">
-              {event?.title}
-            </div>
-            <div className="flex flex-row gap-2 mb-2">
-              <span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-400">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                </svg>
-              </span>
-              <span>
-                {event?.location}
-              </span>
-            </div>
+
+
+
             <div>
               {/* {event?.picture} */}
               {/* TODO: make picture */}
