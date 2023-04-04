@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import React, { useState, useEffect } from 'react';
 import Members from '../../components/Members/Members';
+import Events from "../../components/Group/Events";
 
 
 async function retrieveGroup(parentObjectId) {
@@ -55,7 +56,8 @@ function Group() {
               </div>
             </TabPanel>
             <TabPanel>
-              <p>Replace with components</p>
+              <Events groupName={'OC Python'} />
+              {/* Put group name here */}
             </TabPanel>
             <TabPanel>
               <Members groupName={group?.group.name} />
