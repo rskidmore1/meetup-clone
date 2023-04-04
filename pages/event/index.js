@@ -47,7 +47,7 @@ function Event() {
   const [modal, setModal] = useState(false);
 
 
-  const parentObjectId = '6423680881ba99669b08fa7d';
+  const parentObjectId = '642b6fe0c17fd78a8a0173fe';
   const userId = "64221158e1bbeb5fc205ed21"
 
 
@@ -57,6 +57,7 @@ function Event() {
         data => {
           setEventData(data.event);
           setHostsData(data.hosts[0]);
+          console.log("event data: ", data.event.attendees);
         }
       );
   }, []);
@@ -100,7 +101,7 @@ function Event() {
             {/* Attendees here */}
             <div className="flex flex-col">
               <div className="flex flex-row justify-between">
-                <span>Attendees 16</span>
+                <span className="font-bold">Attendees ({eventData?.attendees.length})</span>
                 {/* TODO: replace numberr with live number */}
                 <button type="button" className="text-blue-400">
                   Manage
