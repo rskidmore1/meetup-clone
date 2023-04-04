@@ -33,7 +33,6 @@ function Events(props) {
         </span>
       </div>
       <div className="flex flex-col gap-5 w-1/2">
-        {/* Make into a map and card */}
         {events?.map((event) => (
           <div className="flex flex-col  bg-white w-full rounded-lg p-2">
 
@@ -46,7 +45,7 @@ function Events(props) {
                   {event?.title}
                 </div>
                 <div className="flex flex-row gap-2 mb-2">
-                  <span>
+                  <span className="ml-[-5px]">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-400">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
