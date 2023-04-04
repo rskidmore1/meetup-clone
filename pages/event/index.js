@@ -111,14 +111,14 @@ function Event() {
                 <div className="flex flex-row gap-4">
                   {
                     attendeesData.slice(0, (attendeesData.length <= 4 ? attendeesData.length : 4)).map((attendee, index) => (
-                      <div className="flex flex-col bg-white rounded-lg">
+                      <div className="flex flex-col gap-2 bg-white rounded-lg w-36 h-44 items-center pt-5">
                         <Image
-                          src={attendee?.photo}
+                          src={attendee?.picture}
                           alt="Attendee photo"
-                          height={50}
-                          width={50}
+                          height={100}
+                          width={100}
                         />
-                        <span>
+                        <span className="font-bold text-lg">
                           {attendee?.name}
                         </span>
                       </div>
