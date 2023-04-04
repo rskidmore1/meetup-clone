@@ -97,6 +97,96 @@ function Event() {
             </div>
             <h2 className='font-bold p-5 self-start'>Details</h2>
             <p>{detailsParagraph}</p>
+            {/* Attendees here */}
+            <div className="flex flex-col">
+              <div className="flex flex-row justify-between">
+                <span>Attendees 16</span>
+                {/* TODO: replace numberr with live number */}
+                <button type="button" className="text-blue-400">
+                  Manage
+                </button>
+              </div>
+              <div>
+                <div className="flex flex-row gap-4">
+                  <div className="flex flex-col bg-white rounded-lg">
+                    <span>
+                      Image
+                      {/* put image here */}
+                    </span>
+                    <span>
+                      Name
+                    </span>
+                  </div>
+                  <div className="flex flex-col bg-white rounded-lg">
+                    <span>
+                      Image
+                      {/* put image here */}
+                    </span>
+                    <span>
+                      Name
+                    </span>
+                  </div>
+                  <div className="flex flex-col bg-white rounded-lg">
+                    <span>
+                      Image
+                      {/* put image here */}
+                    </span>
+                    <span>
+                      Name
+                    </span>
+                  </div>
+                  <div className="flex flex-col bg-white rounded-lg">
+                    <span>
+                      Image
+                      {/* put image here */}
+                    </span>
+                    <span>
+                      Name
+                    </span>
+                  </div>
+                </div>
+                <div className="flex flex-row gap-4">
+                  <div className="flex flex-col bg-white rounded-lg">
+                    <span>
+                      Image
+                      {/* put image here */}
+                    </span>
+                    <span>
+                      Name
+                    </span>
+                  </div>
+                  <div className="flex flex-col bg-white rounded-lg">
+                    <span>
+                      Image
+                      {/* put image here */}
+                    </span>
+                    <span>
+                      Name
+                    </span>
+                  </div>
+                  <div className="flex flex-col bg-white rounded-lg">
+                    <span>
+                      Image
+                      {/* put image here */}
+                    </span>
+                    <span>
+                      Name
+                    </span>
+                  </div>
+                  <div className="flex flex-col bg-white rounded-lg">
+                    <span>
+                      Image
+                      {/* put image here */}
+                    </span>
+                    <span>
+                      Name
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
             <Comment parentObjectId={parentObjectId} />
           </div>
           <div className='flex flex-col content-center gap-5 w-1/3'>
