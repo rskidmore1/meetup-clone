@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 async function retrieveUser(parentObjectId) {
-  const response = await fetch('http://34.210.145.64:8000/user/retrieve-user/' + parentObjectId);
+  const response = await fetch('http://35.86.78.63:8000/user/retrieve-user/' + parentObjectId);
   return response; // Note: Can I make this response.json()?
 }
 

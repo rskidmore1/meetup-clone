@@ -7,12 +7,12 @@ import BottonBar from '../../components/Event/Bottom-Bar';
 
 
 async function retrieveEvent(parentObjectId) {
-  const response = await fetch('http://34.210.145.64:8000/events/retrieve-event/' + parentObjectId);
+  const response = await fetch('http://35.86.78.63:8000/events/retrieve-event/' + parentObjectId);
   return response;
 }
 
 async function saveAttendee(userId, parentObjectId) {
-  const url = 'http://34.210.145.64:8000/events/save-attendee';
+  const url = 'http://35.86.78.63:8000/events/save-attendee';
   const data = { "userId": userId, "eventId": parentObjectId };
 
   const response = await fetch(
