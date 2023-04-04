@@ -65,15 +65,7 @@ function Events(props) {
                   height={125}
                   className="rounded-lg"
                 />
-
               </div>
-            </div>
-
-
-
-            <div>
-              {/* {event?.picture} */}
-              {/* TODO: make picture */}
             </div>
             <div className="text-sm">
               {event?.details_paragraph}
