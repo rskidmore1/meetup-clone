@@ -33,8 +33,8 @@ function Events(props) {
         </span>
       </div>
       <div className="flex flex-col gap-5 w-1/2">
-        {events?.map((event) => (
-          <div className="flex flex-col  bg-white w-full rounded-lg p-2">
+        {events?.map((event, index) => (
+          <div className="flex flex-col  bg-white w-full rounded-lg p-2" key={index}>
 
             <div className="flex flex-row justify-between">
               <div>
