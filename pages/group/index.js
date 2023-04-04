@@ -2,7 +2,9 @@ import Image from "next/image";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import React, { useState, useEffect } from 'react';
+import Members from '../../components/Members/Members';
 import Events from "../../components/Group/Events";
+
 
 async function retrieveGroup(parentObjectId) {
   const response = await fetch('http://35.86.78.63:8000/group/retrieve-group/' + parentObjectId);
@@ -11,7 +13,8 @@ async function retrieveGroup(parentObjectId) {
 
 function Group() {
 
-  const groupID = '6414a97c4e69425c9105db21';
+  // const groupID = '6414a97c4e69425c9105db21'; //OC happy hour
+  const groupID = '6425c4e287ce053cff07f502'; // OC Python
 
   const [group, setGroup] = useState();
 
@@ -57,7 +60,7 @@ function Group() {
               {/* Put group name here */}
             </TabPanel>
             <TabPanel>
-              <p>Replace with components</p>
+              <Members groupName={group?.group.name} />
             </TabPanel>
             <TabPanel>
               <p>Replace with components</p>

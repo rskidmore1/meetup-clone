@@ -4,15 +4,14 @@ import Image from 'next/image';
 import Modal from '../../components/Event/Modal';
 import BottonBar from '../../components/Event/Bottom-Bar';
 
-
-
 async function retrieveEvent(parentObjectId) {
   const response = await fetch('http://35.86.78.63:8000/events/retrieve-event/' + parentObjectId);
-  return response;
+  return response; // Note: Can I make this response.json()?
 }
 
 async function saveAttendee(userId, parentObjectId) {
   const url = 'http://35.86.78.63:8000/events/save-attendee';
+
   const data = { "userId": userId, "eventId": parentObjectId };
 
   const response = await fetch(
@@ -27,7 +26,6 @@ async function saveAttendee(userId, parentObjectId) {
   });
 
   return response;
-
 }
 
 function Event() {
