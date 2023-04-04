@@ -99,8 +99,7 @@ function Event() {
             </div>
             <h2 className='font-bold p-5 self-start'>Details</h2>
             <p>{detailsParagraph}</p>
-            {/* Attendees here */}
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-4">
               <div className="flex flex-row justify-between">
                 <span className="font-bold">Attendees ({eventData?.attendees.length})</span>
                 <button type="button" className="text-blue-400">
@@ -125,7 +124,6 @@ function Event() {
                     ))
                   }
                 </div>
-
                 <div className="flex flex-row gap-4">
                   {attendeesData.length > 4 ?
                     (
@@ -144,13 +142,9 @@ function Event() {
                       ))
                     ) : (
                       <></>
-                    )
-                  }
+                    )}
                 </div>
-
               </div>
-
-
             </div>
             <Comment parentObjectId={parentObjectId} />
           </div>
