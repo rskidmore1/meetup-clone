@@ -44,6 +44,7 @@ function Event() {
 
   const [eventData, setEventData] = useState();
   const [hostsData, setHostsData] = useState();
+  const [attendeesData, setAttendeesData] = useState();
   const [modal, setModal] = useState(false);
 
 
@@ -57,7 +58,7 @@ function Event() {
         data => {
           setEventData(data.event);
           setHostsData(data.hosts[0]);
-          console.log("event data: ", data.event.attendees);
+          setAttendeesData(data.attendees);
         }
       );
   }, []);
@@ -102,88 +103,51 @@ function Event() {
             <div className="flex flex-col">
               <div className="flex flex-row justify-between">
                 <span className="font-bold">Attendees ({eventData?.attendees.length})</span>
-                {/* TODO: replace numberr with live number */}
                 <button type="button" className="text-blue-400">
                   Manage
                 </button>
               </div>
               <div>
                 <div className="flex flex-row gap-4">
-                  <div className="flex flex-col bg-white rounded-lg">
-                    <span>
-                      Image
-                      {/* put image here */}
-                    </span>
-                    <span>
-                      Name
-                    </span>
-                  </div>
-                  <div className="flex flex-col bg-white rounded-lg">
-                    <span>
-                      Image
-                      {/* put image here */}
-                    </span>
-                    <span>
-                      Name
-                    </span>
-                  </div>
-                  <div className="flex flex-col bg-white rounded-lg">
-                    <span>
-                      Image
-                      {/* put image here */}
-                    </span>
-                    <span>
-                      Name
-                    </span>
-                  </div>
-                  <div className="flex flex-col bg-white rounded-lg">
-                    <span>
-                      Image
-                      {/* put image here */}
-                    </span>
-                    <span>
-                      Name
-                    </span>
-                  </div>
+                  {
+                    attendeesData.slice(0, (attendeesData.length <= 4 ? attendeesData.length : 4)).map((attendee, index) => (
+                      <div className="flex flex-col bg-white rounded-lg">
+                        <Image
+                          src={attendee?.photo}
+                          alt="Attendee photo"
+                          height={50}
+                          width={50}
+                        />
+                        <span>
+                          {attendee?.name}
+                        </span>
+                      </div>
+                    ))
+                  }
                 </div>
+
                 <div className="flex flex-row gap-4">
-                  <div className="flex flex-col bg-white rounded-lg">
-                    <span>
-                      Image
-                      {/* put image here */}
-                    </span>
-                    <span>
-                      Name
-                    </span>
-                  </div>
-                  <div className="flex flex-col bg-white rounded-lg">
-                    <span>
-                      Image
-                      {/* put image here */}
-                    </span>
-                    <span>
-                      Name
-                    </span>
-                  </div>
-                  <div className="flex flex-col bg-white rounded-lg">
-                    <span>
-                      Image
-                      {/* put image here */}
-                    </span>
-                    <span>
-                      Name
-                    </span>
-                  </div>
-                  <div className="flex flex-col bg-white rounded-lg">
-                    <span>
-                      Image
-                      {/* put image here */}
-                    </span>
-                    <span>
-                      Name
-                    </span>
-                  </div>
+                  {attendeesData.length > 4 ?
+                    (
+                      attendeesData.slice(5, (attendeesData.length <= 8 ? attendeesData.length : 8)).map((attendee, index) => (
+                        <div className="flex flex-col bg-white rounded-lg">
+                          <Image
+                            src={attendee?.photo}
+                            alt="Attendee photo"
+                            height={50}
+                            width={50}
+                          />
+                          <span>
+                            {attendee?.name}
+                          </span>
+                        </div>
+                      ))
+                    ) : (
+                      <></>
+                    )
+                  }
                 </div>
+
               </div>
 
 
