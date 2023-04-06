@@ -4,6 +4,7 @@ import 'react-tabs/style/react-tabs.css';
 import React, { useState, useEffect } from 'react';
 import Members from '../../components/Members/Members';
 import Events from "../../components/Group/Events";
+import { useRouter } from "next/router";
 
 
 async function retrieveGroup(parentObjectId) {
@@ -13,19 +14,22 @@ async function retrieveGroup(parentObjectId) {
 
 function Group() {
 
+  const router = useRouter();
+  const { pid } = router.query;
+
   // const groupID = '6414a97c4e69425c9105db21'; //OC happy hour
   const groupID = '6425c4e287ce053cff07f502'; // OC Python
 
   const [group, setGroup] = useState();
 
   useEffect(() => {
-    retrieveGroup(groupID).then(
+    retrieveGroup(pid).then(
       result => result.json()).then(
         data => {
           setGroup(data);
         }
       );
-  }, []);
+  }, [pid]);
 
 
   return (
