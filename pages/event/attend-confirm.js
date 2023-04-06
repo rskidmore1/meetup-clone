@@ -25,7 +25,7 @@ function AttendConfirm() {
 
   return (
     <div className="flex flex-row w-full justify-center">
-      <div className="flex flex-col w-[525px] h-[250px] bg-white rounded-lg mt-10 p-5 gap-3">
+      <div className="flex flex-col mt-10 p-5 gap-3 w-[525px] h-[250px] bg-white rounded-lg ">
         <span className="font-bold text-3xl">
           You're going!
         </span>
@@ -48,10 +48,10 @@ function AttendConfirm() {
               <span>{eventData?.start_time}</span>
             </div>
             <div className="flex flex-row gap-2">
-              <button type="button" className="text-white bg-blue-500 px-5 py-1 rounded-lg">
+              <button type="button" className="px-5 py-1 text-white bg-blue-500 rounded-lg">
                 Add to calendar
               </button>
-              <button type="button" className="text-white bg-blue-500 px-5 py-1 rounded-lg">
+              <button type="button" className="px-5 py-1 text-white bg-blue-500 rounded-lg">
                 Event chat
               </button>
             </div>
