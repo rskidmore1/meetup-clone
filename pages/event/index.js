@@ -47,7 +47,7 @@ function Event() {
   const [modal, setModal] = useState(false);
 
 
-  const parentObjectId = '6423680881ba99669b08fa7d';
+  const parentObjectId = '642b6fe0c17fd78a8a0173fe';
   const userId = "64221158e1bbeb5fc205ed21"
 
 
@@ -55,6 +55,7 @@ function Event() {
     retrieveEvent(parentObjectId).then(
       result => result.json()).then(
         data => {
+          console.log(data);
           setEventData(data.event);
           setHostsData(data.hosts[0]);
         }
