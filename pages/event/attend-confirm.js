@@ -2,7 +2,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-
 async function retrieveEvent(parentObjectId) {
   const response = await fetch('http://35.86.78.63:8000/events/retrieve-event/' + parentObjectId);
   return response; // Note: Can I make this response.json()?
@@ -11,7 +10,6 @@ async function retrieveEvent(parentObjectId) {
 function AttendConfirm() {
 
   const router = useRouter();
-
   const [eventData, setEventData] = useState();
 
   useEffect(() => {
@@ -24,7 +22,6 @@ function AttendConfirm() {
         }
       );
   }, []);
-
 
   return (
     <div className="flex flex-row w-full justify-center">
