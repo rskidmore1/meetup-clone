@@ -7,7 +7,7 @@ function Modal(props) {
   const router = useRouter();
 
   const attendeefunction = () => {
-    router.push('http://35.86.78.63:3000/event/attend-confirm'); // pass values with url
+    router.push('http://35.86.78.63:3000/event/attend-confirm?userid=' + `${props.userId}&eventid=${props.parentObjectId}`); // pass values with url
     props.saveAttendee(props.userId, props.parentObjectId);
   }
 
