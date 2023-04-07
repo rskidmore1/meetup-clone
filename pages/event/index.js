@@ -4,8 +4,6 @@ import Image from 'next/image';
 import Modal from '../../components/Event/Modal';
 import BottonBar from '../../components/Event/Bottom-Bar';
 
-
-
 async function retrieveEvent(parentObjectId) {
   const response = await fetch('http://35.86.78.63:8000/events/retrieve-event/' + parentObjectId);
   return response;
