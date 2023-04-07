@@ -42,12 +42,11 @@ function Event() {
 
   const [eventData, setEventData] = useState();
   const [hostsData, setHostsData] = useState();
+  const [attendeesData, setAttendeesData] = useState();
   const [modal, setModal] = useState(false);
 
-
-  const parentObjectId = '6423680881ba99669b08fa7d';
+  const parentObjectId = '642b6fe0c17fd78a8a0173fe';
   const userId = "64221158e1bbeb5fc205ed21"
-
 
   useEffect(() => {
     retrieveEvent(parentObjectId).then(
@@ -55,6 +54,7 @@ function Event() {
         data => {
           setEventData(data.event);
           setHostsData(data.hosts[0]);
+          setAttendeesData(data.attendees);
         }
       );
   }, []);
@@ -95,6 +95,53 @@ function Event() {
             </div>
             <h2 className='font-bold p-5 self-start'>Details</h2>
             <p>{detailsParagraph}</p>
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-row justify-between">
+                <span className="font-bold">Attendees ({eventData?.attendees.length})</span>
+                <button type="button" className="text-blue-400">
+                  Manage
+                </button>
+              </div>
+              <div>
+                <div className="flex flex-row gap-4">
+                  {
+                    attendeesData.slice(0, (attendeesData.length <= 4 ? attendeesData.length : 4)).map((attendee, index) => (
+                      <div className="flex flex-col gap-2 bg-white rounded-lg w-36 h-44 items-center pt-5" key={index}>
+                        <Image
+                          src={attendee?.picture}
+                          alt="Attendee photo"
+                          height={100}
+                          width={100}
+                        />
+                        <span className="font-bold text-lg">
+                          {attendee?.name}
+                        </span>
+                      </div>
+                    ))
+                  }
+                </div>
+                <div className="flex flex-row gap-4">
+                  {attendeesData.length > 4 ?
+                    (
+                      attendeesData.slice(5, (attendeesData.length <= 8 ? attendeesData.length : 8)).map((attendee, index) => (
+                        <div className="flex flex-col bg-white rounded-lg" key={index}>
+                          <Image
+                            src={attendee?.photo}
+                            alt="Attendee photo"
+                            height={50}
+                            width={50}
+                          />
+                          <span>
+                            {attendee?.name}
+                          </span>
+                        </div>
+                      ))
+                    ) : (
+                      <></>
+                    )}
+                </div>
+              </div>
+            </div>
             <Comment parentObjectId={parentObjectId} />
           </div>
           <div className='flex flex-col content-center gap-5 w-1/3'>
