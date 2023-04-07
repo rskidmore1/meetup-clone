@@ -47,10 +47,8 @@ function Event() {
   const [attendeesData, setAttendeesData] = useState();
   const [modal, setModal] = useState(false);
 
-
   const parentObjectId = '642b6fe0c17fd78a8a0173fe';
   const userId = "64221158e1bbeb5fc205ed21"
-
 
   useEffect(() => {
     retrieveEvent(parentObjectId).then(
