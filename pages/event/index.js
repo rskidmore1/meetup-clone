@@ -108,7 +108,7 @@ function Event() {
               <div>
                 <div className="flex flex-row gap-4">
                   {
-                    attendeesData.slice(0, (attendeesData.length <= 4 ? attendeesData.length : 4)).map((attendee, index) => (
+                    attendeesData?.slice(0, (attendeesData.length <= 4 ? attendeesData.length : 4)).map((attendee, index) => (
                       <div className="flex flex-col gap-2 bg-white rounded-lg w-36 h-44 items-center pt-5" key={index}>
                         <Image
                           src={attendee?.picture}
@@ -124,9 +124,9 @@ function Event() {
                   }
                 </div>
                 <div className="flex flex-row gap-4">
-                  {attendeesData.length > 4 ?
+                  {attendeesData?.length > 4 ?
                     (
-                      attendeesData.slice(5, (attendeesData.length <= 8 ? attendeesData.length : 8)).map((attendee, index) => (
+                      attendeesData?.slice(5, (attendeesData.length <= 8 ? attendeesData.length : 8)).map((attendee, index) => (
                         <div className="flex flex-col bg-white rounded-lg" key={index}>
                           <Image
                             src={attendee?.photo}
