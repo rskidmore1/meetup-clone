@@ -3,7 +3,7 @@ import Comment from '../../components/Comment/Comment';
 import Image from 'next/image';
 import Modal from '../../components/Event/Modal';
 import BottonBar from '../../components/Event/Bottom-Bar';
-
+import { useRouter } from "next/router";
 
 async function retrieveEvent(parentObjectId) {
   const response = await fetch('http://35.86.78.63:8000/events/retrieve-event/' + parentObjectId);
@@ -42,25 +42,29 @@ function Event() {
   let endTime = "sometime";
   let group = "somegroupID";
 
+  const router = useRouter();
+  const { pid } = router.query;
+
   const [eventData, setEventData] = useState();
   const [hostsData, setHostsData] = useState();
   const [attendeesData, setAttendeesData] = useState();
   const [modal, setModal] = useState(false);
 
   const parentObjectId = '642b6fe0c17fd78a8a0173fe';
+  // TODO just replace this one
   const userId = "64221158e1bbeb5fc205ed21"
 
   useEffect(() => {
-    retrieveEvent(parentObjectId).then(
+    retrieveEvent(pid).then(
       result => result.json()).then(
         data => {
-          console.log(data);
+          console.log(data.event);
           setEventData(data.event);
           setHostsData(data.hosts[0]);
           setAttendeesData(data.attendees);
         }
       );
-  }, []);
+  }, [pid]);
 
   return (
     <div>
