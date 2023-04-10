@@ -50,15 +50,12 @@ function Event() {
   const [attendeesData, setAttendeesData] = useState();
   const [modal, setModal] = useState(false);
 
-  const parentObjectId = '642b6fe0c17fd78a8a0173fe';
-  // TODO just replace this one
   const userId = "64221158e1bbeb5fc205ed21"
 
   useEffect(() => {
     retrieveEvent(pid).then(
       result => result.json()).then(
         data => {
-          console.log(data.event);
           setEventData(data.event);
           setHostsData(data.hosts[0]);
           setAttendeesData(data.attendees);
@@ -72,7 +69,7 @@ function Event() {
         <div>
           <div className='px-2'>
             <p className="text-header font-bold font-sans">
-              {title}
+              {eventData?.title}
             </p>
           </div>
           <div className="flex flex-row gap-4 px-2">
@@ -101,7 +98,7 @@ function Event() {
               />
             </div>
             <h2 className='font-bold p-5 self-start'>Details</h2>
-            <p>{detailsParagraph}</p>
+            <p>{eventData?.details_paragraph}</p>
             <div className="flex flex-col gap-4">
               <div className="flex flex-row justify-between">
                 <span className="font-bold">Attendees ({eventData?.attendees.length})</span>
@@ -149,7 +146,7 @@ function Event() {
                 </div>
               </div>
             </div>
-            <Comment parentObjectId={parentObjectId} />
+            <Comment parentObjectId={pid} />
           </div>
           <div className='flex flex-col content-center gap-5 w-1/3'>
             <div className='w-44 h-9 border-2 border-black bg-slate-50 rounded-md flex flex-row justify-center'>
@@ -182,6 +179,7 @@ function Event() {
                 </svg>
                 <span>
                   Monday, March 6, 2023 at 7:00pm to Monday, March 6, 2023 at 9:00pm PST
+                  {/* TODO: replace with start and end time */}
                 </span>
               </div>
               <div className='flex flex-row'>
@@ -204,8 +202,8 @@ function Event() {
           </div>
         </div>
       </div>
-      <BottonBar title={title} setModal={setModal} />
-      <Modal modal={modal} setModal={setModal} saveAttendee={saveAttendee} userId={userId} parentObjectId={parentObjectId} />
+      <BottonBar title={eventData?.title} setModal={setModal} />
+      <Modal modal={modal} setModal={setModal} saveAttendee={saveAttendee} userId={userId} parentObjectId={pid} />
     </div>
   );
 }
