@@ -16,6 +16,7 @@ function Events(props) {
       result => result.json()).then(
         data => {
           setEvents(data.events);
+          console.log(data.events);
         }
       );
   }, []);
@@ -35,7 +36,8 @@ function Events(props) {
       </div>
       <div className="flex flex-col gap-5 w-1/2">
         {events?.map((event, index) => (
-          <Link href={"/event/" + `${event.id}`}>
+          <Link href={"/event/" + `${event._id.$oid}`}>
+            <div className={console.log(event['_id'])}></div>
             <div className="flex flex-col  bg-white w-full rounded-lg p-2" key={index}>
               <div className="flex flex-row justify-between">
                 <div>
