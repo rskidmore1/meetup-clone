@@ -17,9 +17,6 @@ function Group() {
   const router = useRouter();
   const { pid } = router.query;
 
-  // const groupID = '6414a97c4e69425c9105db21'; //OC happy hour
-  const groupID = '6425c4e287ce053cff07f502'; // OC Python
-
   const [group, setGroup] = useState();
 
   useEffect(() => {
