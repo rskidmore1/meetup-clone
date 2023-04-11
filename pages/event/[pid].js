@@ -3,7 +3,7 @@ import Comment from '../../components/Comment/Comment';
 import Image from 'next/image';
 import Modal from '../../components/Event/Modal';
 import BottonBar from '../../components/Event/Bottom-Bar';
-
+import { useRouter } from "next/router";
 
 async function retrieveEvent(parentObjectId) {
   const response = await fetch('http://35.86.78.63:8000/events/retrieve-event/' + parentObjectId);
@@ -12,7 +12,6 @@ async function retrieveEvent(parentObjectId) {
 
 async function saveAttendee(userId, parentObjectId) {
   const url = 'http://35.86.78.63:8000/events/save-attendee';
-  // put route change here
 
   const data = { "userId": userId, "eventId": parentObjectId };
 
@@ -32,35 +31,27 @@ async function saveAttendee(userId, parentObjectId) {
 
 function Event() {
 
-  let title = 'Some Event';
-  let host = "Ryan";
-  let hostPhoto = "/src/img/host.png";
-  let photo = "./someline";
-  let location = "someaddress";
-  let detailsParagraph = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae erat eleifend, egestas lorem eu, vehicula nisl. Cras bibendum tellus eu purus accumsan, quis aliquet ipsum cursus. Sed nec iaculis urna, ut lobortis lacus. Vestibulum at sem bibendum, porta dolor vel, fermentum tortor. Nulla non aliquam arcu. Integer eget aliquet risus. Nullam non malesuada felis. Sed commodo hendrerit erat, et placerat felis vulputate vel. Suspendisse non porta lectus. Cras in neque gravida, lacinia ex ut, tempus est. Curabitur quis massa non ante porta lacinia. Nunc nec urna ex. Maecenas lorem nunc, finibus sit amet tincidunt sit amet, fringilla euismod dolor. Quisque risus diam, consequat eu posuere maximus, finibus ac nulla. Donec feugiat ante id est elementum, a maximus purus sodales. Nullam efficitur odio vel nisl tincidunt tristique. Maecenas vestibulum bibendum arcu, at rutrum sem hendrerit ut. In a facilisis lacus. Donec vitae venenatis enim, sed commodo nibh. Aenean at blandit est. In id faucibus elit. Phasellus lobortis, nunc nec auctor accumsan, orci odio tempor nibh, ac iaculis urna justo sit amet tellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere ipsum sit amet ultrices gravida.';
-  let startTime = "sometime";
-  let endTime = "sometime";
-  let group = "somegroupID";
+  const router = useRouter();
+  const { pid } = router.query;
 
   const [eventData, setEventData] = useState();
   const [hostsData, setHostsData] = useState();
   const [attendeesData, setAttendeesData] = useState();
   const [modal, setModal] = useState(false);
 
-  const parentObjectId = '642b6fe0c17fd78a8a0173fe';
   const userId = "64221158e1bbeb5fc205ed21"
+  // TODO: replace during auth ticket
 
   useEffect(() => {
-    retrieveEvent(parentObjectId).then(
+    retrieveEvent(pid).then(
       result => result.json()).then(
         data => {
-          console.log(data);
           setEventData(data.event);
           setHostsData(data.hosts[0]);
           setAttendeesData(data.attendees);
         }
       );
-  }, []);
+  }, [pid]);
 
   return (
     <div>
@@ -68,7 +59,7 @@ function Event() {
         <div>
           <div className='px-2'>
             <p className="text-header font-bold font-sans">
-              {title}
+              {eventData?.title}
             </p>
           </div>
           <div className="flex flex-row gap-4 px-2">
@@ -97,7 +88,7 @@ function Event() {
               />
             </div>
             <h2 className='font-bold p-5 self-start'>Details</h2>
-            <p>{detailsParagraph}</p>
+            <p>{eventData?.details_paragraph}</p>
             <div className="flex flex-col gap-4">
               <div className="flex flex-row justify-between">
                 <span className="font-bold">Attendees ({eventData?.attendees.length})</span>
@@ -108,7 +99,7 @@ function Event() {
               <div>
                 <div className="flex flex-row gap-4">
                   {
-                    attendeesData.slice(0, (attendeesData.length <= 4 ? attendeesData.length : 4)).map((attendee, index) => (
+                    attendeesData?.slice(0, (attendeesData.length <= 4 ? attendeesData.length : 4)).map((attendee, index) => (
                       <div className="flex flex-col gap-2 bg-white rounded-lg w-36 h-44 items-center pt-5" key={index}>
                         <Image
                           src={attendee?.picture}
@@ -124,9 +115,9 @@ function Event() {
                   }
                 </div>
                 <div className="flex flex-row gap-4">
-                  {attendeesData.length > 4 ?
+                  {attendeesData?.length > 4 ?
                     (
-                      attendeesData.slice(5, (attendeesData.length <= 8 ? attendeesData.length : 8)).map((attendee, index) => (
+                      attendeesData?.slice(5, (attendeesData.length <= 8 ? attendeesData.length : 8)).map((attendee, index) => (
                         <div className="flex flex-col bg-white rounded-lg" key={index}>
                           <Image
                             src={attendee?.photo}
@@ -145,7 +136,7 @@ function Event() {
                 </div>
               </div>
             </div>
-            <Comment parentObjectId={parentObjectId} />
+            <Comment parentObjectId={pid} />
           </div>
           <div className='flex flex-col content-center gap-5 w-1/3'>
             <div className='w-44 h-9 border-2 border-black bg-slate-50 rounded-md flex flex-row justify-center'>
@@ -178,6 +169,7 @@ function Event() {
                 </svg>
                 <span>
                   Monday, March 6, 2023 at 7:00pm to Monday, March 6, 2023 at 9:00pm PST
+                  {/* TODO: replace with start and end time */}
                 </span>
               </div>
               <div className='flex flex-row'>
@@ -200,8 +192,8 @@ function Event() {
           </div>
         </div>
       </div>
-      <BottonBar title={title} setModal={setModal} />
-      <Modal modal={modal} setModal={setModal} saveAttendee={saveAttendee} userId={userId} parentObjectId={parentObjectId} />
+      <BottonBar title={eventData?.title} setModal={setModal} />
+      <Modal modal={modal} setModal={setModal} saveAttendee={saveAttendee} userId={userId} parentObjectId={pid} />
     </div>
   );
 }
