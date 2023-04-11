@@ -13,6 +13,7 @@ function Events(props) {
   const [displayEvents, setDisplayEvents] = useState([]);
   const [highlightArea, setHighlightArea] = useState();
 
+  // Function sets display events and highlights "Upcoming" or "Past" events
   const changeDisplayEvents = (weekState, highlightAreaParam, allEvents) => {
     setHighlightArea(highlightAreaParam);
     setDisplayEvents([]);
@@ -21,7 +22,6 @@ function Events(props) {
       setDisplayEvents(displayEvents => [...displayEvents, ...allEvents.filter((event) => event.week === state)]);
     })
   }
-  // TODO: make comments on code
 
   useEffect(() => {
     retrieveEvents(props.groupName).then(
