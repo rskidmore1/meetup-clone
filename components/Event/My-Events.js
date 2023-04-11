@@ -54,12 +54,12 @@ export default function MyGroups() {
           <Link href={"/event/" + `${event._id.$oid}`}>
             <div className="flex flex-row bg-white gap-5 p-3 rounded-lg">
               hello
-              {/* <Image
-                src={group.picture}
-                alt="group photo"
+              <Image
+                src={event.photo}
+                alt="Event photo"
                 width={150}
                 height={150}
-              /> */}
+              />
               {/* <div className="flex flex-col">
                 <span>
                   {group.name}
