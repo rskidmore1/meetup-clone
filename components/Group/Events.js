@@ -37,10 +37,10 @@ function Events(props) {
   return (
     <div className="flex flex-row w-[1000px] gap-10">
       <div className="flex flex-col w-1/4 p-5 bg-white rounded-lg gap-2 text-lg">
-        <span className={highlightArea === 'upcoming' ? "border-r-2 border-r-blue-600 cursor-pointer" : ""} onClick={() => changeDisplayEvents(['this', 'next'], 'upcoming', events)}>
+        <span className={"cursor-pointer" + (highlightArea === 'upcoming' ? " border-r-2 border-r-blue-600" : "")} onClick={() => changeDisplayEvents(['this', 'next'], 'upcoming', events)}>
           Upcoming
         </span>
-        <span className={highlightArea === 'past' ? "border-r-2 border-r-blue-600 cursor-pointer" : ""} onClick={() => changeDisplayEvents(['last'], 'past', events)}>
+        <span className={"cursor-pointer " + (highlightArea === 'past' ? "border-r-2 border-r-blue-600" : "")} onClick={() => changeDisplayEvents(['last'], 'past', events)}>
           Past
         </span>
         <span>

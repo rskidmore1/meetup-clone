@@ -58,7 +58,6 @@ function Group() {
             </TabPanel>
             <TabPanel>
               <Events groupName={group?.group.name} />
-              {/* Put group name here */}
             </TabPanel>
             <TabPanel>
               <Members groupName={group?.group.name} />
