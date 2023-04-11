@@ -12,14 +12,12 @@ async function retrieveEvents(groupName) {
   return response;
 }
 
-
-
 export default function MyGroups() {
   const [allEvents, setAllEvents] = useState([]);
   const [eventsThisWeek, setEventsThisWeek] = useState([]);
 
-  const filterDate = () => {
-    const currentEvents = allEvents.filter(event => event.week === 'this');
+  const filterDate = (events) => {
+    const currentEvents = events.filter(event => event.week === 'this');
     return currentEvents;
   }
 
@@ -31,19 +29,13 @@ export default function MyGroups() {
             retrieveEvents(group.name).then(
               result => result.json()).then(
                 data => {
-                  setAllEvents([...allEvents, ...data.events]);
+                  setEventsThisWeek([...eventsThisWeek, ...filterDate(data.events)]);
                 }
               );
           })
         }
       );
   }, []);
-
-  useEffect(() => {
-    // const returnEvents = filterDate();
-    console.log(filterDate());
-    setEventsThisWeek(filterDate());
-  }, [allEvents]);
 
   return (
     <div className="flex flex-col px-10 py-5 border-b-[1px] border-b-gray-500 ">
