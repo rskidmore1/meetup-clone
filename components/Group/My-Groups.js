@@ -23,8 +23,8 @@ export default function MyGroups() {
     <div className="flex flex-col px-10 py-5 border-b-[1px] border-b-gray-500 ">
       <h1 className="font-bold text-2xl self-center">My Groups</h1>
       <div className="flex flex-row justify-center gap-5 pt-5">
-        {groups?.map((group) => (
-          <div className="flex flex-row bg-white gap-5 p-3 rounded-lg w-fit h-fit">
+        {groups?.map((group, index) => (
+          <div className="flex flex-row bg-white gap-5 p-3 rounded-lg w-fit h-fit" key={index}>
             <Link href={"/group/" + `${group.id}`}>
               <Image
                 src={group.picture}

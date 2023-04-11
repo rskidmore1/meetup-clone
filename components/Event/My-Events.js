@@ -13,7 +13,6 @@ async function retrieveEvents(groupName) {
 }
 
 export default function MyGroups() {
-  const [allEvents, setAllEvents] = useState([]);
   const [eventsThisWeek, setEventsThisWeek] = useState([]);
 
   const filterDate = (events) => {
@@ -42,11 +41,11 @@ export default function MyGroups() {
       <h1 className="font-bold text-2xl self-center">Events This Week</h1>
 
       <div className="flex flex-row flex-wrap justify-center gap-5 pt-5">
-        {eventsThisWeek?.map((event) => (
-          <Link href={"/event/" + `${event._id.$oid}`}>
+        {eventsThisWeek?.map((event, index) => (
+          <Link href={"/event/" + `${event._id.$oid}`} key={index}>
             <div className="flex flex-row bg-white gap-5 p-3 rounded-lg w-fit h-fit">
               <Image
-                src={event.photo}
+                src={event?.photo}
                 alt="Event photo"
                 width={150}
                 height={150}
