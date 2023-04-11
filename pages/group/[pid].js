@@ -57,7 +57,7 @@ function Group() {
               </div>
             </TabPanel>
             <TabPanel>
-              <Events groupName={'OC Python'} />
+              <Events groupName={group?.group.name} />
               {/* Put group name here */}
             </TabPanel>
             <TabPanel>
