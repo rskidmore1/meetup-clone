@@ -27,7 +27,6 @@ function Events(props) {
     retrieveEvents(props.groupName).then(
       result => result.json()).then(
         data => {
-          // console.log(data.events);
           setEvents(data.events);
           changeDisplayEvents(['this', 'next'], 'upcoming', data.events);
         }
