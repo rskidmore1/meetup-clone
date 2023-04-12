@@ -42,7 +42,6 @@ function Comment(props) {
   }, [props.parentObjectId])
 
   useEffect(() => {
-    console.log('parentObjectId: ', props.parentObjectId);
     retrieveComment(parentObjectId).then(
       result => result.json(),
     ).then(
