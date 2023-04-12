@@ -28,7 +28,7 @@ export default function MyGroups() {
             retrieveEvents(group.name).then(
               result => result.json()).then(
                 data => {
-                  setEventsThisWeek([...eventsThisWeek, ...filterDate(data.events)]);
+                  setEventsThisWeek(eventsThisWeek =>[...eventsThisWeek, ...filterDate(data.events)]);
                 }
               );
           })
