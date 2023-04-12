@@ -10,12 +10,25 @@ async function retrieveEvents(groupName) {
 
 function Events(props) {
   const [events, setEvents] = useState();
+  const [displayEvents, setDisplayEvents] = useState([]);
+  const [highlightArea, setHighlightArea] = useState();
+
+  // Function sets display events and highlights "Upcoming" or "Past" events
+  const changeDisplayEvents = (weekState, highlightAreaParam, allEvents) => {
+    setHighlightArea(highlightAreaParam);
+    setDisplayEvents([]);
+
+    weekState.map((state) => {
+      setDisplayEvents(displayEvents => [...displayEvents, ...allEvents.filter((event) => event.week === state)]);
+    })
+  }
 
   useEffect(() => {
     retrieveEvents(props.groupName).then(
       result => result.json()).then(
         data => {
           setEvents(data.events);
+          changeDisplayEvents(['this', 'next'], 'upcoming', data.events);
         }
       );
   }, []);
@@ -23,10 +36,10 @@ function Events(props) {
   return (
     <div className="flex flex-row w-[1000px] gap-10">
       <div className="flex flex-col w-1/4 p-5 bg-white rounded-lg gap-2 text-lg">
-        <span className="border-r-2 border-r-blue-600">
+        <span className={"cursor-pointer " + (highlightArea === 'upcoming' ? "border-r-2 border-r-blue-600" : "")} onClick={() => changeDisplayEvents(['this', 'next'], 'upcoming', events)}>
           Upcoming
         </span>
-        <span>
+        <span className={"cursor-pointer " + (highlightArea === 'past' ? "border-r-2 border-r-blue-600" : "")} onClick={() => changeDisplayEvents(['last'], 'past', events)}>
           Past
         </span>
         <span>
@@ -34,7 +47,7 @@ function Events(props) {
         </span>
       </div>
       <div className="flex flex-col gap-5 w-1/2">
-        {events?.map((event, index) => (
+        {displayEvents?.map((event, index) => (
           <Link href={"/event/" + `${event._id.$oid}`}>
             <div className="flex flex-col  bg-white w-full rounded-lg p-2" key={index}>
               <div className="flex flex-row justify-between">
@@ -66,9 +79,6 @@ function Events(props) {
                     className="rounded-lg"
                   />
                 </div>
-              </div>
-              <div className="text-sm">
-                {event?.details_paragraph}
               </div>
               <div className="flex flex-row justify-between w-max-full text-sm">
                 <span className='self-end'>
