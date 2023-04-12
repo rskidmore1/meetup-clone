@@ -30,7 +30,7 @@ async function saveComment(comment) {
 function Comment(props) {
 
   const parentObjectId = props.parentObjectId;
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState();
 
   const [toggleInput, setToggleInput] = useState(false);
   const [toggleIndex, setToggleIndex] = useState();
@@ -41,11 +41,17 @@ function Comment(props) {
 
   useEffect(() => {
     retrieveComment(parentObjectId).then(
-      result => result.json()).then(
-        data => {
-          setComments(data.comments);
-        }
-      );
+      (result) => {
+        result.json()
+      },
+      (reason) => {
+        console.error('No comment for this object');
+      }
+    ).then(
+      data => {
+        setComments(data?.comments);
+      }
+    );
   }, []);
 
   const handleSubmit = (e, topLevel = true, parentCommentId = '') => {
@@ -65,7 +71,13 @@ function Comment(props) {
     };
     topLevel === false ? setToggleInput(false) : null;
     saveComment(newComment);
-    setComments(comments => [...comments, newComment]);
+    if (!comments) {
+      setComments([newComment]);
+    } else {
+      setComments(comments => [...comments, newComment]);
+    }
+
+
     e.target.reset();
 
   }
