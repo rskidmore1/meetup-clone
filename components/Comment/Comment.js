@@ -29,30 +29,28 @@ async function saveComment(comment) {
 
 function Comment(props) {
 
-  const parentObjectId = props.parentObjectId;
+  const [parentObjectId, setParentObjectId] = useState();
   const [comments, setComments] = useState();
-
   const [toggleInput, setToggleInput] = useState(false);
   const [toggleIndex, setToggleIndex] = useState();
   const toggleInputButton = (index) => {
     setToggleInput(!toggleInput);
     setToggleIndex(index);
   }
+  useEffect(() => {
+    setParentObjectId(props.parentObjectId);
+  }, [props.parentObjectId])
 
   useEffect(() => {
+    console.log('parentObjectId: ', props.parentObjectId);
     retrieveComment(parentObjectId).then(
-      (result) => {
-        result.json()
-      },
-      (reason) => {
-        console.error('No comment for this object');
-      }
+      result => result.json(),
     ).then(
-      data => {
-        setComments(data?.comments);
-      }
+      data => (
+        setComments(data.comments),
+      )
     );
-  }, []);
+  }, [parentObjectId]);
 
   const handleSubmit = (e, topLevel = true, parentCommentId = '') => {
     e.preventDefault();
