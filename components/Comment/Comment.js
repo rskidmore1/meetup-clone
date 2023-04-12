@@ -30,7 +30,7 @@ async function saveComment(comment) {
 function Comment(props) {
 
   const parentObjectId = props.parentObjectId;
-  const [comments, setComments] = useState();
+  const [comments, setComments] = useState([]);
 
   const [toggleInput, setToggleInput] = useState(false);
   const [toggleIndex, setToggleIndex] = useState();
@@ -70,7 +70,7 @@ function Comment(props) {
 
   }
   return (
-    <div className='flex flex-col gap-2'>
+    <div className='flex flex-col gap-2 pb-20'>
       <h2 className='font-bold self-start'>Comments</h2>
       {comments?.map((comment, index) => (
         comment?.top_level_comment ? (
