@@ -33,29 +33,34 @@ function Event() {
 
   const router = useRouter();
   const { pid } = router.query;
-
   const [eventData, setEventData] = useState();
   const [hostsData, setHostsData] = useState();
   const [attendeesData, setAttendeesData] = useState();
   const [modal, setModal] = useState(false);
+  const [parentID, setParentId] = useState();
 
   const userId = "64221158e1bbeb5fc205ed21"
   // TODO: replace during auth ticket
 
   useEffect(() => {
-    retrieveEvent(pid).then(
-      result => result.json()).then(
-        data => {
-          setEventData(data.event);
-          setHostsData(data.hosts[0]);
-          setAttendeesData(data.attendees);
-        }
-      );
+    setParentId(pid);
+
+    if (pid !== undefined) {
+      retrieveEvent(pid).then(
+        result => result.json()).then(
+          data => {
+            setEventData(data.event);
+            setHostsData(data.hosts[0]);
+            setAttendeesData(data.attendees);
+          }
+        );
+    }
+
   }, [pid]);
 
   return (
-    <div>
-      <div className="h-36 mb-10 w-full flex justify-items-start bg-white">
+    <>
+      <div className="flex justify-items-start w-full mb-10 h-36 py-14 bg-white ">
         <div>
           <div className='px-2'>
             <p className="text-header font-bold font-sans">
@@ -194,7 +199,7 @@ function Event() {
       </div>
       <BottonBar title={eventData?.title} setModal={setModal} />
       <Modal modal={modal} setModal={setModal} saveAttendee={saveAttendee} userId={userId} parentObjectId={pid} />
-    </div>
+    </>
   );
 }
 
