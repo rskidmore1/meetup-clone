@@ -29,24 +29,27 @@ async function saveComment(comment) {
 
 function Comment(props) {
 
-  const parentObjectId = props.parentObjectId;
+  const [parentObjectId, setParentObjectId] = useState();
   const [comments, setComments] = useState();
-
   const [toggleInput, setToggleInput] = useState(false);
   const [toggleIndex, setToggleIndex] = useState();
   const toggleInputButton = (index) => {
     setToggleInput(!toggleInput);
     setToggleIndex(index);
   }
+  useEffect(() => {
+    setParentObjectId(props.parentObjectId);
+  }, [props.parentObjectId])
 
   useEffect(() => {
     retrieveComment(parentObjectId).then(
-      result => result.json()).then(
-        data => {
-          setComments(data.comments);
-        }
-      );
-  }, []);
+      result => result.json(),
+    ).then(
+      data => (
+        setComments(data.comments),
+      )
+    );
+  }, [parentObjectId]);
 
   const handleSubmit = (e, topLevel = true, parentCommentId = '') => {
     e.preventDefault();
@@ -65,12 +68,18 @@ function Comment(props) {
     };
     topLevel === false ? setToggleInput(false) : null;
     saveComment(newComment);
-    setComments(comments => [...comments, newComment]);
+    if (!comments) {
+      setComments([newComment]);
+    } else {
+      setComments(comments => [...comments, newComment]);
+    }
+
+
     e.target.reset();
 
   }
   return (
-    <div className='flex flex-col gap-2'>
+    <div className='flex flex-col gap-2 pb-20'>
       <h2 className='font-bold self-start'>Comments</h2>
       {comments?.map((comment, index) => (
         comment?.top_level_comment ? (
